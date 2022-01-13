@@ -1,78 +1,118 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
       xmlns="http://www.w3.org/1999/html" lang="pl">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
+    <link href="../static/styles/container_styles.css" th:href="@{/styles/container_styles.css}" rel="stylesheet">
 </head>
-<div class="d-flex align-items-center justify-content-center" style="height: 100vh">
-    <div class="row bg-light shadow border p-3">
-        <div class="col-12 text-center text-warning">Rejestracja</div>
-        <form th:action="@{/register}" method="post">
-            <div class="form-floating mt-2">
-                <input type="number" class="form-control" th:field="${registerDto.pesel}" id="username" required>
-                <label for="username">Numer pesel</label>
-                <div class="text-danger" th:errors="${registerDto.pesel}"></div>
+<body class="bg-light">
+
+<div class="container">
+    <main>
+        <div class="py-5 text-center">
+            <h2>Rejestracja</h2>
+            <p class="lead">Wszystkie wprowadzone dane są weryfikowane przez nasz system, dlatego prosimy o wprowadzanie
+                tylko prawdziwych danych.</p>
+        </div>
+        <div class="col-9 m-auto">
+            <div th:if="${#fields.hasErrors('${registerDto.*}')}">
+                <h4 class="mb-3 mt-4 border-bottom">Błędy</h4>
+                <ul>
+                    <li class="text-muted" th:each="err : ${#fields.errors('registerDto.*')}" th:text="${err}"></li>
+                </ul>
+                <hr>
             </div>
-            <div class="form-floating mt-2">
-                <input type="text" class="form-control" th:field="${registerDto.firstName}" id="firstname" required>
-                <label for="firstname">Imię</label>
-                <div class="text-danger" th:errors="${registerDto.firstName}"></div>
-            </div>
-            <div class="form-floating mt-2">
-                <input type="text" class="form-control" th:field="${registerDto.lastName}" id="lastname" required>
-                <label for="lastname">Nazwisko</label>
-                <div class="text-danger" th:errors="${registerDto.lastName}"></div>
-            </div>
-            <div class="form-floating mt-2">
-                <input type="text" class="form-control" th:field="${registerDto.adress}" id="adress" required>
-                <label for="adress">Adres</label>
-                <div class="text-danger" th:errors="${registerDto.adress}"></div>
-            </div>
-            <div class="form-floating mt-2">
-                <input type="text" class="form-control" th:field="${registerDto.postalCode}" id="postalcode" required>
-                <label for="postalcode">Kod pocztowy</label>
-                <div class="text-danger" th:errors="${registerDto.postalCode}"></div>
-            </div>
-            <div class="form-floating mt-2">
-                <input type="text" class="form-control" th:field="${registerDto.city}" id="city" required>
-                <label for="city">Miasto</label>
-                <div class="text-danger" th:errors="${registerDto.city}"></div>
-            </div>
-            <div class="form-floating mt-2">
-                <input type="text" class="form-control" th:field="${registerDto.email}" id="email" required>
-                <label for="email">Adres E-Mail</label>
-                <div class="text-danger" th:errors="${registerDto.email}"></div>
-            </div>
-            <div class="form-floating mt-2">
-                <input type="number" class="form-control" th:field="${registerDto.telephoneNumber}" id="telephonenumber" required>
-                <label for="telephonenumber">Numer telefonu</label>
-                <div class="text-danger" th:errors="${registerDto.passwordRepeat}"></div>
-            </div>
-            <div class="form-floating mt-2">
-                <select th:field="${registerDto.gender}">
-                    <option th:each="gender : ${T(pl.saqie.SimpleBank.app.user.model.Gender).values()}" th:value="${gender}" th:text="${gender.description}"></option>
-                </select>
-                <div class="text-danger" th:errors="${registerDto.gender}"></div>
-            </div>
-            <div class="form-floating mt-2">
-                <input type="password" class="form-control" th:field="${registerDto.password}" id="password" required>
-                <label for="password">Hasło</label>
-                <div class="text-danger" th:errors="${registerDto.password}"></div>
-            </div>
-            <div class="form-floating mt-2">
-                <input type="password" class="form-control" th:field="${registerDto.passwordRepeat}" id="passwordrepeat" required>
-                <label for="passwordrepeat">Powtórz hasło</label>
-                <div class="text-danger" th:errors="${registerDto.passwordRepeat}"></div>
+            <div th:if="${!#fields.hasErrors('${registerDto.*}')}">
+                <div th:if="${error != null}">
+                    <h4 class="mb-3 mt-4 border-bottom">Błędy</h4>
+                    <ul>
+                        <li class="text-muted" th:text="${error}"></li>
+                    </ul>
+                    <hr>
+                </div>
             </div>
 
-            <button type="submit" class="col-12 mt-4 btn btn-outline-dark">Zarejestruj</button>
-        </form>
-        <a href="/login">Logowanie</a>
-    </div>
+            <h4 class="mb-3 border-bottom">Dane konta</h4>
+            <form method="post" th:action="@{/register}">
+                <div class="row g-3 align-self-center">
+                    <div class="col-sm-6">
+                        <label for="firstName" class="form-label">Imię</label>
+                        <input type="text" class="form-control" id="firstName" th:field="${registerDto.firstName}">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="lastName" class="form-label">Nazwisko</label>
+                        <input type="text" class="form-control" id="lastName" th:field="${registerDto.lastName}">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="pesel" class="form-label">Pesel</label>
+                        <input type="text" class="form-control" id="pesel" th:field="${registerDto.pesel}">
+                    </div>
+
+
+                    <div class="col-sm-6">
+                        <label for="address" class="form-label">Adres</label>
+                        <input type="text" class="form-control" id="address" th:field="${registerDto.adress}">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="postalcode" class="form-label">Kod pocztowy</label>
+                        <input type="text" class="form-control" id="postalcode" th:field="${registerDto.postalCode}">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="city" class="form-label">Miasto</label>
+                        <input type="text" class="form-control" id="city" th:field="${registerDto.city}">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="telephone" class="form-label">Numer telefonu</label>
+                        <input type="text" class="form-control" id="telephone"
+                               th:field="${registerDto.telephoneNumber}">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="gender" class="form-label">Płeć</label>
+                        <select class="form-select" id="gender" th:field="${registerDto.gender}">
+                            <option th:each="gender : ${T(pl.saqie.SimpleBank.app.user.model.Gender).values()}"
+                                    th:value="${gender}" th:text="${gender.description}"></option>
+                        </select>
+                    </div>
+
+                    <h4 class="mb-3 mt-4 border-bottom">Zabezpieczenia</h4>
+
+                    <div class="col-sm-6">
+                        <label for="password" class="form-label">Hasło</label>
+                        <input type="password" class="form-control" id="password" th:field="${registerDto.password}">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="passwordRepeat" class="form-label">Powtórz hasło</label>
+                        <input type="password" class="form-control" id="passwordRepeat"
+                               th:field="${registerDto.passwordRepeat}">
+                    </div>
+
+                    <div class="col-sm-12">
+                        <label for="email" class="form-label">Adres e-mail</label>
+                        <input type="text" class="form-control" id="email" th:field="${registerDto.email}">
+                    </div>
+                </div>
+                <button class="w-100 btn btn-outline-dark mt-4" type="submit">Zarejestruj się</button>
+            </form>
+            <div class="mt-3 col-12 text-center text-muted">Jeśli masz już konto, <a href="/login" class="text-muted"
+                                                                                     style="text-decoration: none">kliknij</a>
+                aby przejść do logowania.
+            </div>
+        </div>
+    </main>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">Created by SaQie github.com/SaQie</p>
+    </footer>
 </div>
 </body>
 </html>
