@@ -6,7 +6,6 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
-    <link href="../static/styles/container_styles.css" th:href="@{/styles/container_styles.css}" rel="stylesheet">
 </head>
 <body class="bg-light">
 
@@ -17,7 +16,23 @@
             <p class="lead">Wszystkie wprowadzone dane są weryfikowane przez nasz system, dlatego prosimy o wprowadzanie
                 tylko prawdziwych danych.</p>
         </div>
-        <div class="col-9 m-auto">
+        <div class="col-9 m-auto" th:if="${registerSuccessfull != null}">
+            <div class="text-center text-success fw-bold" th:text="${registerSuccessfull}"></div>
+            <div class="text-muted fw-bold mt-4">Dane Twojego konta prezentują się następująco:</div>
+            <ul class="mt-2">
+                <li class="text-muted" th:text="'Imię: ' + ${registerDto.firstName}"></li>
+                <li class="text-muted" th:text="'Nazwisko: ' + ${registerDto.lastName}"></li>
+                <li class="text-muted" th:text="'Pesel: ' + ${registerDto.pesel}"></li>
+                <li class="text-muted" th:text="'Numer telefonu: ' + ${registerDto.telephoneNumber}"></li>
+                <li class="text-muted" th:text="'Adres: ' + ${registerDto.adress}"></li>
+                <li class="text-muted" th:text="'Kod pocztowy: ' + ${registerDto.postalCode}"></li>
+                <li class="text-muted" th:text="'Miasto: ' + ${registerDto.city}"></li>
+                <li class="text-muted" th:text="'Płeć: ' + ${registerDto.gender.description}"></li>
+                <li class="text-muted" th:text="'E-mail: ' + ${registerDto.email}"></li>
+            </ul>
+            <a href="/login" class="text-muted mt-4 mb-4" style="text-decoration: none">Kliknij aby przejść do logowania</a>
+        </div>
+        <div class="col-9 m-auto" th:if="${registerSuccessfull == null}">
             <div th:if="${#fields.hasErrors('${registerDto.*}')}">
                 <h4 class="mb-3 mt-4 border-bottom">Błędy</h4>
                 <ul>

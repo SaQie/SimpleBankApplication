@@ -2,6 +2,7 @@ package pl.saqie.SimpleBank.app.user.mapper;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.saqie.SimpleBank.app.config.security.PasswordEncoder;
 import pl.saqie.SimpleBank.app.user.model.User;
 import pl.saqie.SimpleBank.app.user.model.dto.RegisterDto;
 import pl.saqie.SimpleBank.app.user.model.dto.UserGenericDto;
@@ -13,7 +14,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class RegisterDtoMapper implements UserMapper{
 
-    private UserInformationMapper mapper;
+    private final UserInformationMapper mapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public User mapDtoToEntity(UserGenericDto genericDto) {
@@ -21,7 +23,7 @@ public class RegisterDtoMapper implements UserMapper{
         return User.builder()
                 .pesel(dto.getPesel())
                 .createdDate(LocalDate.now())
-                .password(dto.getPassword())
+                .password(passwordEncoder.getPasswordEncoder().encode(dto.getPassword()))
                 .email(dto.getEmail())
                 .userInformation(mapper.mapDtoToEntity(dto))
                 .build();

@@ -25,10 +25,14 @@ public class RegisterServiceImpl implements RegisterService{
 
     @Override
     public void addNewUser(RegisterDto registerDto) throws UserAlreadyExistsException, UserIncompatibilePasswordsException, UserFieldValidationFailedException {
+        validateRegisterDto(registerDto);
+        User user = mapper.mapDtoToEntity(registerDto);
+        repository.save(user);
+    }
+
+    private void validateRegisterDto(RegisterDto registerDto) throws UserAlreadyExistsException, UserIncompatibilePasswordsException, UserFieldValidationFailedException {
         for (RegisterValidator validator : validator) {
             validator.validate(registerDto);
         }
-        User user = mapper.mapDtoToEntity(registerDto);
-        repository.save(user);
     }
 }
