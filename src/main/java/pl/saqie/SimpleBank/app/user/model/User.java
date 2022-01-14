@@ -29,7 +29,7 @@ public class User implements UserDetails {
     private LocalDate createdDate;
     private LocalDate updatedDate;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     private Account account;
 
     @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH})

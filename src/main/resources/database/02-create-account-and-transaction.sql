@@ -2,7 +2,7 @@ CREATE TABLE account(
     id SERIAL PRIMARY KEY ,
     account_number VARCHAR(255) NOT NULL,
     account_balance NUMERIC NOT NULL ,
-    account_created_date TIME NOT NULL
+    account_created_date DATE NOT NULL
 );
 
 CREATE TABLE transaction(

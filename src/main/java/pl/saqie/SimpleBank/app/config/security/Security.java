@@ -23,7 +23,7 @@ public class Security extends WebSecurityConfigurerAdapter {
 
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth){
         auth.authenticationProvider(authentitactionProviderBuilder());
     }
 
@@ -41,15 +41,9 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .antMatchers("/home").permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/login").successForwardUrl("/").permitAll()
-                .and()
-                .rememberMe()
-                .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(7))
+                .loginPage("/login").successForwardUrl("/").usernameParameter("pesel").permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?logout")
-                .clearAuthentication(true)
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID", "remember-me")
                 .and()
                 .httpBasic();
     }

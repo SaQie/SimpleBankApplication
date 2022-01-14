@@ -7,6 +7,6 @@ import pl.saqie.SimpleBank.app.user.model.dto.RegisterDto;
 
 public interface RegisterService {
 
-    void addNewUser(RegisterDto registerDto) throws UserAlreadyExistsException, UserIncompatibilePasswordsException, UserFieldValidationFailedException;
+    void registerUser(RegisterDto registerDto) throws UserAlreadyExistsException, UserIncompatibilePasswordsException, UserFieldValidationFailedException;
 
 }

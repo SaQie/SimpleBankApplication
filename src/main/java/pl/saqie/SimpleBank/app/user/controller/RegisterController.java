@@ -31,7 +31,7 @@ public class RegisterController {
     public String processRegisterUser(@ModelAttribute @Valid RegisterDto registerDto, BindingResult bindingResult, Model model) {
         if (!bindingResult.hasErrors()) {
             try {
-                registerService.addNewUser(registerDto);
+                registerService.registerUser(registerDto);
                 model.addAttribute("registerSuccessfull", "Zostałeś pomyślnie zarejestrowany");
             } catch (UserAlreadyExistsException | UserFieldValidationFailedException | UserIncompatibilePasswordsException e) {
                 model.addAttribute("error", e.getMessage());

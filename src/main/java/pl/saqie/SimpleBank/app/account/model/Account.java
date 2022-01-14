@@ -1,5 +1,6 @@
 package pl.saqie.SimpleBank.app.account.model;
 
+import lombok.*;
 import pl.saqie.SimpleBank.app.transaction.model.Transaction;
 import pl.saqie.SimpleBank.app.user.model.User;
 
@@ -9,6 +10,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "account")
 public class Account {
 
@@ -16,7 +22,7 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     private User user;
 
     private String accountNumber;
