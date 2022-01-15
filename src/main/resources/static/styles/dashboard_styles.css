@@ -1,0 +1,30 @@
+.ubuntu{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.menu-hover:hover{
+    transition: 0.3s;
+    transform: scale(1.04);
+    color: cornflowerblue !important;
+}
+
+.menu-hover{
+    transition: 0.3s;
+}
+
+.activated{
+    color:green;
+    font-weight: bold;
+}
+
+.bg-blue{
+    background-color: dodgerblue !important;
+}
+
+.bg-red{
+    background-color: darkred !important;
+}
+
+.bg-green{
+    background-color: darkgreen !important;
+}

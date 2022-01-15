@@ -21,6 +21,7 @@ public class UserInformation {
     private String firstName;
     private String lastName;
     private String adress;
+    private String city;
     private String postalCode;
     private String telephoneNumber;
     @Enumerated(value = EnumType.STRING)

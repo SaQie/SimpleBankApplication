@@ -3,7 +3,7 @@ package pl.saqie.SimpleBank.app.user.model;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import pl.saqie.SimpleBank.app.account.model.Account;
+import pl.saqie.SimpleBank.app.account.model.BankAccount;
 import pl.saqie.SimpleBank.app.user_information.model.UserInformation;
 
 import javax.persistence.*;
@@ -17,7 +17,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
-public class User implements UserDetails {
+public class User implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,8 +29,9 @@ public class User implements UserDetails {
     private LocalDate createdDate;
     private LocalDate updatedDate;
 
+
     @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    private Account account;
+    private BankAccount bankAccount;
 
     @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH})
     private UserInformation userInformation;

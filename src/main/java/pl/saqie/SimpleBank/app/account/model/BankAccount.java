@@ -15,8 +15,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "account")
-public class Account {
+@Table(name = "bank_account")
+public class BankAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +28,8 @@ public class Account {
     private String accountNumber;
     private BigDecimal accountBalance;
     private LocalDate accountCreatedDate;
+    private int accountNumberOfRecipients;
+    private int accountNumberOfExpenses;
 
     @OneToMany
     private List<Transaction> transactions;

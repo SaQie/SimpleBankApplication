@@ -3,6 +3,7 @@ CREATE TABLE users_informations(
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL ,
     adress VARCHAR(255) NOT NULL ,
+    city VARCHAR(255) NOT NULL ,
     postal_code VARCHAR(50) NOT NULL ,
     telephone_number VARCHAR(9) NOT NULL,
     gender VARCHAR(255) NOT NULL

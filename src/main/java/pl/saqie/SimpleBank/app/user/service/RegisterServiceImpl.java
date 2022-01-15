@@ -2,12 +2,12 @@ package pl.saqie.SimpleBank.app.user.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.saqie.SimpleBank.app.account.model.Account;
-import pl.saqie.SimpleBank.app.account.service.AccountCreateService;
+import pl.saqie.SimpleBank.app.account.model.BankAccount;
+import pl.saqie.SimpleBank.app.account.service.BankAccountCreateService;
 import pl.saqie.SimpleBank.app.user.exception.UserAlreadyExistsException;
 import pl.saqie.SimpleBank.app.user.exception.UserFieldValidationFailedException;
 import pl.saqie.SimpleBank.app.user.exception.UserIncompatibilePasswordsException;
-import pl.saqie.SimpleBank.app.user.mapper.UserMapper;
+import pl.saqie.SimpleBank.app.user.mapper.UserMapperToEntity;
 import pl.saqie.SimpleBank.app.user.model.User;
 import pl.saqie.SimpleBank.app.user.model.dto.RegisterDto;
 import pl.saqie.SimpleBank.app.user.repository.UserRepository;
@@ -21,16 +21,16 @@ public class RegisterServiceImpl implements RegisterService{
 
     private final UserRepository repository;
     private final List<RegisterValidator> validator;
-    private final UserMapper mapper;
-    private final AccountCreateService accountService;
+    private final UserMapperToEntity mapperToEntity;
+    private final BankAccountCreateService accountService;
 
 
 
     @Override
     public void registerUser(RegisterDto registerDto) throws UserAlreadyExistsException, UserIncompatibilePasswordsException, UserFieldValidationFailedException {
         validateRegisterDto(registerDto);
-        User user = mapper.mapDtoToEntity(registerDto);
-        assignAccountToUser(user);
+        User user = mapperToEntity.mapDtoToEntity(registerDto);
+        assignBankAccountToUser(user);
         repository.save(user);
     }
 
@@ -40,8 +40,8 @@ public class RegisterServiceImpl implements RegisterService{
         }
     }
 
-    private void assignAccountToUser(User user){
-        Account account = accountService.createNewAccount(user);
-        user.setAccount(account);
+    private void assignBankAccountToUser(User user){
+        BankAccount bankAccount = accountService.createNewBankAccount(user);
+        user.setBankAccount(bankAccount);
     }
 }

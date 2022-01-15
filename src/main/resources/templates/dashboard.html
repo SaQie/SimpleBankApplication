@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Bank</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
+    <link href="../static/styles/dashboard_styles.css" th:href="@{/styles/dashboard_styles.css}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row flex-nowrap bg-light">
+        <div class="col-auto px-0">
+            <div id="sidebar" class="collapse collapse-horizontal show border-end">
+                <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
+                    <div class="list-group-item border-end-0 d-inline-block text-muted fw-bold text-center"
+                         data-bs-parent="#sidebar"><img src="https://i.imgur.com/pGrf3qn.png" width="50" height="50">
+                    </div>
+                    <div class="list-group-item border-end-0 d-inline-block text-black fw-bold text-center ubuntu p-2"
+                         data-bs-parent="#sidebar"><h4>Konto bankowe</h4></div>
+                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                       data-bs-parent="#sidebar">
+                        <div class="menu-hover"><img src="https://i.imgur.com/q9h1xIS.png" width="20" height="20"> <span
+                                class="ms-1 activated">Panel główny</span></div>
+                    </a>
+                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                       data-bs-parent="#sidebar">
+                        <div class="menu-hover"><img src="https://i.imgur.com/yHXUDeR.png" width="20" height="20"> <span
+                                class="ms-1">Wykonaj przelew</span></div>
+                    </a>
+                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                       data-bs-parent="#sidebar">
+                        <div class="menu-hover"><img src="https://i.imgur.com/fbl3hn1.png" width="20" height="20"> <span
+                                class="ms-1">Moje konto</span></div>
+                    </a>
+                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                       data-bs-parent="#sidebar">
+                        <div class="menu-hover"><img src="https://i.imgur.com/tZ9qXsV.png" width="20" height="20"> <span
+                                class="ms-1">Przychody</span></div>
+                    </a>
+                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                       data-bs-parent="#sidebar">
+                        <div class="menu-hover"><img src="https://i.imgur.com/VHoRMmu.png" width="20" height="20"> <span
+                                class="ms-1">Wydatki</span></div>
+                    </a>
+                    <div class="list-group-item border-end-0 d-inline-block text-black fw-bold text-center ubuntu p-2"
+                         data-bs-parent="#sidebar"><h4>Konto użytkownika</h4></div>
+                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                       data-bs-parent="#sidebar">
+                        <div class="menu-hover"><img src="https://i.imgur.com/QLVCxiW.png" width="20" height="20"> <span
+                                class="ms-1">Twoje dane</span></div>
+                    </a>
+                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                       data-bs-parent="#sidebar">
+                        <div class="menu-hover"><img src="https://i.imgur.com/a2KFETw.png" width="20" height="20"> <span
+                                class="ms-1">Zmiana hasła</span></div>
+                    </a>
+                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                       data-bs-parent="#sidebar">
+                        <div class="menu-hover"><img src="https://i.imgur.com/cAUHTLz.png" width="20" height="20"> <span
+                                class="ms-1">Aktywne konta bankowe</span></div>
+                    </a>
+                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                       data-bs-parent="#sidebar">
+                        <div class="menu-hover"><img src="https://i.imgur.com/hIygDG3.png" width="20" height="20"> <span
+                                class="ms-1">Wyloguj się</span></div>
+                    </a>
+                    <div class="list-group-item border-end-0 d-inline-block text-black fw-bold text-center ubuntu p-2"
+                         data-bs-parent="#sidebar"><h4>Kantor walut</h4></div>
+                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                       data-bs-parent="#sidebar">
+                        <div class="menu-hover"><img src="https://i.imgur.com/bnhLfry.png" width="20" height="20"> <span
+                                class="ms-1">Kursy wszystkich walut</span></div>
+                    </a>
+                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                       data-bs-parent="#sidebar">
+                        <div class="menu-hover"><img src="https://i.imgur.com/FkjiLDs.png" width="20" height="20"> <span
+                                class="ms-1">Kurs konkretnej waluty</span></div>
+                    </a>
+                    <div class="list-group-item border-end-0 d-inline-block text-black fw-bold text-center ubuntu p-2"
+                         data-bs-parent="#sidebar"><h4>Zapisani odbiorcy</h4></div>
+                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                       data-bs-parent="#sidebar">
+                        <div class="menu-hover"><img src="https://i.imgur.com/1wtk0m1.png" width="20" height="20"> <span
+                                class="ms-1">Lista zapisanych odbiorców</span></div>
+                    </a>
+                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                       data-bs-parent="#sidebar">
+                        <div class="menu-hover"><img src="https://i.imgur.com/eShcyti.png" width="20" height="20"> <span
+                                class="ms-1">Dodaj odbiorcę</span></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <main class="col ps-md-2 pt-2">
+            <div class="page-header pt-3">
+                <h2>Panel główny konta bankowego</h2>
+            </div>
+            <p class="lead">Tutaj znajdziesz wszystkie najważniejsze informacje o Twoim koncie</p>
+            <hr>
+            <div class="row ms-1 justify-content-between">
+                <div class="col-12 col-xl-3 bg-blue mt-xl-0 mt-2 p-3 rounded-3">
+                    <h3 class="text-start text-white" th:text="${dashboardInformations.accountBalance}"></h3>
+                    <h5 class="text-start fw-bold text-white mt-4">Aktualne środki na koncie</h5>
+                </div>
+                <div class="col-12 col-xl-3 ms-xl-2 ms-0 mt-xl-0 mt-2 bg-green p-3 pb-3 rounded-3">
+                    <h3 class="text-start text-white" th:text="${dashboardInformations.accountNumberOfRecipients}"></h3>
+                    <h5 class="text-start fw-bold text-white mt-4">Zapisanych odbiorców</h5>
+                </div>
+                <div class="col-12 col-xl-3 ms-xl-2 ms-0 mt-xl-0 mt-2 bg-red p-3 me-2 rounded-3">
+                    <h3 class="text-start text-white" th:text="${dashboardInformations.accountNumberOfExpenses}"></h3>
+                    <h5 class="text-start fw-bold text-white mt-4">Wykonanych przelewów</h5>
+                </div>
+            </div>
+            <hr>
+            <div class="row ms-1 justify-content-around">
+                <div class="col-12 col-xl-5 mt-xl-0 mt-2 bg-white rounded-3 p-4 me-2 table-responsive">
+                    <h3 class="text-start text-black fw-bold ubuntu">Dane klienta</h3>
+                    <hr>
+                    <p class="fw-bold text-start text-black">Imię: <span class="text-muted" th:text="${dashboardInformations.firstName}"></span> </p>
+                    <p class="fw-bold text-start text-black">Nazwisko: <span class="text-muted" th:text="${dashboardInformations.lastName}"></span> </p>
+                    <p class="fw-bold text-start text-black">Pesel: <span class="text-muted" th:text="${dashboardInformations.pesel}"></span> </p>
+                    <p class="fw-bold text-start text-black">Adres: <span class="text-muted" th:text="${dashboardInformations.adress}"></span> </p>
+                    <p class="fw-bold text-start text-black">Kod pocztowy: <span class="text-muted" th:text="${dashboardInformations.postalCode}"></span> </p>
+                    <p class="fw-bold text-start text-black">Miasto: <span class="text-muted" th:text="${dashboardInformations.city}"></span> </p>
+                    <p class="fw-bold text-start text-black">Numer telefonu: <span class="text-muted" th:text="${dashboardInformations.telephoneNumber}"></span> </p>
+                    <p class="fw-bold text-start text-black">Płeć: <span class="text-muted text-end" th:text="${dashboardInformations.gender}"></span> </p>
+
+                </div>
+                <div class="col-12 col-xl-5 mt-xl-0 mt-2 bg-white rounded-3 p-4 me-2 table-responsive">
+                    <h3 class="text-start text-black fw-bold ubuntu">Dane konta</h3>
+                    <hr>
+                    <p class="fw-bold text-start text-black">Email: <span class="text-muted" th:text="${dashboardInformations.email}"></span> </p>
+                    <p class="fw-bold text-start text-black">Konto utworzone dnia: <span class="text-muted" th:text="${dashboardInformations.accountCreatedDate}"></span> </p>
+                    <p class="fw-bold text-start text-black">Stan konta: <span class="text-muted" th:text="${dashboardInformations.accountBalance}"></span> </p>
+                    <p class="fw-bold text-start text-black">Numer konta bankowego: <span class="text-muted" th:text="${dashboardInformations.accountNumber}"></span> </p>
+                </div>
+            </div>
+            <hr>
+            <div class="row mt-4 ms-1 justify-content-around">
+                <div class="col-11 bg-red rounded-3 p-3 m-3 table-responsive">
+                    <h4 class="text-start text-white fw-bold ubuntu">-1230,00 zł</h4>
+                    <hr>
+                    <h4 class="text-start text-white fw-bold ubuntu">Aktualny bilans konta, postaraj się popracować nad oszczędzaniem !</h4>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>
