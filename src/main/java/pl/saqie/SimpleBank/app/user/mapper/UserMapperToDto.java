@@ -1,10 +1,10 @@
 package pl.saqie.SimpleBank.app.user.mapper;
 
 import pl.saqie.SimpleBank.app.user.model.User;
-import pl.saqie.SimpleBank.app.user.model.dto.UserGenericDto;
+import pl.saqie.SimpleBank.app.utils.BasicDto;
 
 public interface UserMapperToDto {
 
-    UserGenericDto mapEntityToDto(User user);
+    BasicDto mapEntityToDto(User user);
 
 }

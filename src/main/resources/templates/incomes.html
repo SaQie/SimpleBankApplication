@@ -25,7 +25,7 @@
                     <a href="/dashboard" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
                         <div class="menu-hover"><img src="https://i.imgur.com/q9h1xIS.png" width="20" height="20"> <span
-                                class="ms-1 activated">Panel główny</span></div>
+                                class="ms-1">Panel główny</span></div>
                     </a>
                     <a href="/transfer" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
@@ -40,7 +40,7 @@
                     <a href="/incomes" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
                         <div class="menu-hover"><img src="https://i.imgur.com/tZ9qXsV.png" width="20" height="20"> <span
-                                class="ms-1">Przychody</span></div>
+                                class="ms-1 activated">Przychody</span></div>
                     </a>
                     <a href="/expenses" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
@@ -98,54 +98,49 @@
         </div>
         <main class="col ps-md-2 pt-2">
             <div class="page-header pt-3">
-                <h2>Panel główny konta bankowego</h2>
+                <h2>Przychody</h2>
             </div>
-            <p class="lead">Tutaj znajdziesz wszystkie najważniejsze informacje o Twoim koncie</p>
+            <p class="lead">Tutaj znajdziesz wszystkie przychody Twojego konta</p>
             <hr>
-            <div class="row ms-1 justify-content-between">
-                <div class="col-12 col-xl-3 bg-blue mt-xl-0 mt-2 p-3 rounded-3">
-                    <h3 class="text-start text-white" th:text="${dashboardInformations.accountBalance}"></h3>
-                    <h5 class="text-start fw-bold text-white mt-4">Aktualne środki na koncie</h5>
+            <div class="col-12 text-center fw-bold text-muted" th:if="${incomes.isEmpty()}">Nie posiadasz przychodów.</div>
+            <div class="container mt-5 px-2" th:if="${!incomes.isEmpty()}">
+                <div class="mb-2 d-flex justify-content-between align-items-center">
+                    <div class="px-2">                            <ul class="pagination justify-content-end">
+                        <li class="page-item">
+                            <a class="page-link" th:if="${currentPage > 1}" th:href="@{'?page=' + ${currentPage - 1}}" tabindex="-1">Poprzednia</a>
+                        </li>
+                        <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}">
+                            <a class="page-link" th:href="@{'?page=' + ${i}}" th:text="${i}"></a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" th:if="${currentPage != totalPages}" th:href="@{'?page=' + ${currentPage + 1}}">Następna</a>
+                        </li>
+                    </ul></div>
                 </div>
-                <div class="col-12 col-xl-3 ms-xl-2 ms-0 mt-xl-0 mt-2 bg-green p-3 pb-3 rounded-3">
-                    <h3 class="text-start text-white" th:text="${dashboardInformations.accountNumberOfRecipients}"></h3>
-                    <h5 class="text-start fw-bold text-white mt-4">Zapisanych odbiorców</h5>
-                </div>
-                <div class="col-12 col-xl-3 ms-xl-2 ms-0 mt-xl-0 mt-2 bg-red p-3 me-2 rounded-3">
-                    <h3 class="text-start text-white" th:text="${dashboardInformations.accountNumberOfExpenses}"></h3>
-                    <h5 class="text-start fw-bold text-white mt-4">Wykonanych przelewów</h5>
-                </div>
-            </div>
-            <hr>
-            <div class="row ms-1 justify-content-around">
-                <div class="col-12 col-xl-5 mt-xl-0 mt-2 bg-white rounded-3 p-4 me-2 table-responsive">
-                    <h3 class="text-start text-black fw-bold ubuntu">Dane klienta</h3>
+                <div class="table-responsive">
+                    <table class="table table-responsive table-borderless">
+                        <thead>
+                        <hr>
+                        <tr class="bg-light">
+                            <th scope="col" width="5%">L.P</th>
+                            <th scope="col" width="20%">Data</th>
+                            <th scope="col" width="10%">Opis</th>
+                            <th scope="col" width="20%">Wartość</th>
+                            <th scope="col" width="20%">Numer konta</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="incomes, count: ${incomes}">
+                            <th th:text="${count.count}"></th>
+                            <td th:text="${incomes.date}"></td>
+                            <td th:text="${incomes.description}"></td>
+                            <td th:text="${incomes.amount} + ' zł'"></td>
+                            <td th:text="${incomes.accountNumberFrom}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
                     <hr>
-                    <p class="fw-bold text-start text-black">Imię: <span class="text-muted" th:text="${dashboardInformations.firstName}"></span> </p>
-                    <p class="fw-bold text-start text-black">Nazwisko: <span class="text-muted" th:text="${dashboardInformations.lastName}"></span> </p>
-                    <p class="fw-bold text-start text-black">Pesel: <span class="text-muted" th:text="${dashboardInformations.pesel}"></span> </p>
-                    <p class="fw-bold text-start text-black">Adres: <span class="text-muted" th:text="${dashboardInformations.adress}"></span> </p>
-                    <p class="fw-bold text-start text-black">Kod pocztowy: <span class="text-muted" th:text="${dashboardInformations.postalCode}"></span> </p>
-                    <p class="fw-bold text-start text-black">Miasto: <span class="text-muted" th:text="${dashboardInformations.city}"></span> </p>
-                    <p class="fw-bold text-start text-black">Numer telefonu: <span class="text-muted" th:text="${dashboardInformations.telephoneNumber}"></span> </p>
-                    <p class="fw-bold text-start text-black">Płeć: <span class="text-muted text-end" th:text="${dashboardInformations.gender}"></span> </p>
-
-                </div>
-                <div class="col-12 col-xl-5 mt-xl-0 mt-2 bg-white rounded-3 p-4 me-2 table-responsive">
-                    <h3 class="text-start text-black fw-bold ubuntu">Dane konta</h3>
-                    <hr>
-                    <p class="fw-bold text-start text-black">Email: <span class="text-muted" th:text="${dashboardInformations.email}"></span> </p>
-                    <p class="fw-bold text-start text-black">Konto utworzone dnia: <span class="text-muted" th:text="${dashboardInformations.accountCreatedDate}"></span> </p>
-                    <p class="fw-bold text-start text-black">Stan konta: <span class="text-muted" th:text="${dashboardInformations.accountBalance}"></span> </p>
-                    <p class="fw-bold text-start text-black">Numer konta bankowego: <span class="text-muted" th:text="${dashboardInformations.accountNumber}"></span> </p>
-                </div>
-            </div>
-            <hr>
-            <div class="row mt-4 ms-1 justify-content-around">
-                <div class="col-11 bg-red rounded-3 p-3 m-3 table-responsive">
-                    <h4 class="text-start text-white fw-bold ubuntu">-1230,00 zł</h4>
-                    <hr>
-                    <h4 class="text-start text-white fw-bold ubuntu">Aktualny bilans konta, postaraj się popracować nad oszczędzaniem !</h4>
+                    <div class="col-12 text-muted fw-bold text-center" th:if="${incomes.get(0) != null}" th:text="'Twoje wszystkie przychody: ' + ${incomes.get(0).allIncomes} + ' zł'"></div>
                 </div>
             </div>
         </main>

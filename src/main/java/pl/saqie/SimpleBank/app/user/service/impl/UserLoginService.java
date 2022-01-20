@@ -1,4 +1,4 @@
-package pl.saqie.SimpleBank.app.user.service;
+package pl.saqie.SimpleBank.app.user.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

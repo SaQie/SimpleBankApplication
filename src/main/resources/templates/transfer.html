@@ -25,12 +25,12 @@
                     <a href="/dashboard" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
                         <div class="menu-hover"><img src="https://i.imgur.com/q9h1xIS.png" width="20" height="20"> <span
-                                class="ms-1 activated">Panel główny</span></div>
+                                class="ms-1">Panel główny</span></div>
                     </a>
                     <a href="/transfer" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
                         <div class="menu-hover"><img src="https://i.imgur.com/yHXUDeR.png" width="20" height="20"> <span
-                                class="ms-1">Wykonaj przelew</span></div>
+                                class="ms-1 activated">Wykonaj przelew</span></div>
                     </a>
                     <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
@@ -98,55 +98,49 @@
         </div>
         <main class="col ps-md-2 pt-2">
             <div class="page-header pt-3">
-                <h2>Panel główny konta bankowego</h2>
+                <h2>Wykonaj przelew</h2>
             </div>
-            <p class="lead">Tutaj znajdziesz wszystkie najważniejsze informacje o Twoim koncie</p>
+            <p class="lead">Tutaj wykonasz przelew na wybrany numer bankowy</p>
             <hr>
-            <div class="row ms-1 justify-content-between">
-                <div class="col-12 col-xl-3 bg-blue mt-xl-0 mt-2 p-3 rounded-3">
-                    <h3 class="text-start text-white" th:text="${dashboardInformations.accountBalance}"></h3>
-                    <h5 class="text-start fw-bold text-white mt-4">Aktualne środki na koncie</h5>
-                </div>
-                <div class="col-12 col-xl-3 ms-xl-2 ms-0 mt-xl-0 mt-2 bg-green p-3 pb-3 rounded-3">
-                    <h3 class="text-start text-white" th:text="${dashboardInformations.accountNumberOfRecipients}"></h3>
-                    <h5 class="text-start fw-bold text-white mt-4">Zapisanych odbiorców</h5>
-                </div>
-                <div class="col-12 col-xl-3 ms-xl-2 ms-0 mt-xl-0 mt-2 bg-red p-3 me-2 rounded-3">
-                    <h3 class="text-start text-white" th:text="${dashboardInformations.accountNumberOfExpenses}"></h3>
-                    <h5 class="text-start fw-bold text-white mt-4">Wykonanych przelewów</h5>
-                </div>
+            <div class="col-6 m-auto" th:if="${transferSuccess == null}">
+                <h4 class="mb-3 border-bottom">Dane odbiorcy</h4>
+                <form method="post" th:action="@{/transfer}">
+                    <div class="row g-3 align-self-center">
+                        <div class="col-sm-12">
+                            <label for="accountNumber" class="form-label">Numer rachunku odbiorcy</label>
+                            <input type="number" class="form-control" id="accountNumber" th:field="${transferDto.accountNumber}">
+                            <div class="col-12 text-muted">Wprowadz 26-cyfrowy numer konta odbiorcy</div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label for="amount" class="form-label">Kwota</label>
+                            <input type="number" step="0.01" class="form-control" id="amount" th:field="${transferDto.amount}">
+                            <div class="col-12 text-muted">Wprowadz kwotę</div>
+                        </div>
+                        <div class="col-sm-12">
+                            <label for="title" class="form-label">Tytuł przelewu</label>
+                            <input type="text" step="0.01" class="form-control" id="title" th:field="${transferDto.description}">
+                            <div class="col-12 text-muted">Wprowadz krótki opis przelewu</div>
+                        </div>
+                    </div>
+                    <button class="w-100 btn btn-outline-success mt-4" type="submit">Wykonaj przelew</button>
+                </form>
             </div>
-            <hr>
-            <div class="row ms-1 justify-content-around">
-                <div class="col-12 col-xl-5 mt-xl-0 mt-2 bg-white rounded-3 p-4 me-2 table-responsive">
-                    <h3 class="text-start text-black fw-bold ubuntu">Dane klienta</h3>
-                    <hr>
-                    <p class="fw-bold text-start text-black">Imię: <span class="text-muted" th:text="${dashboardInformations.firstName}"></span> </p>
-                    <p class="fw-bold text-start text-black">Nazwisko: <span class="text-muted" th:text="${dashboardInformations.lastName}"></span> </p>
-                    <p class="fw-bold text-start text-black">Pesel: <span class="text-muted" th:text="${dashboardInformations.pesel}"></span> </p>
-                    <p class="fw-bold text-start text-black">Adres: <span class="text-muted" th:text="${dashboardInformations.adress}"></span> </p>
-                    <p class="fw-bold text-start text-black">Kod pocztowy: <span class="text-muted" th:text="${dashboardInformations.postalCode}"></span> </p>
-                    <p class="fw-bold text-start text-black">Miasto: <span class="text-muted" th:text="${dashboardInformations.city}"></span> </p>
-                    <p class="fw-bold text-start text-black">Numer telefonu: <span class="text-muted" th:text="${dashboardInformations.telephoneNumber}"></span> </p>
-                    <p class="fw-bold text-start text-black">Płeć: <span class="text-muted text-end" th:text="${dashboardInformations.gender}"></span> </p>
-
-                </div>
-                <div class="col-12 col-xl-5 mt-xl-0 mt-2 bg-white rounded-3 p-4 me-2 table-responsive">
-                    <h3 class="text-start text-black fw-bold ubuntu">Dane konta</h3>
-                    <hr>
-                    <p class="fw-bold text-start text-black">Email: <span class="text-muted" th:text="${dashboardInformations.email}"></span> </p>
-                    <p class="fw-bold text-start text-black">Konto utworzone dnia: <span class="text-muted" th:text="${dashboardInformations.accountCreatedDate}"></span> </p>
-                    <p class="fw-bold text-start text-black">Stan konta: <span class="text-muted" th:text="${dashboardInformations.accountBalance}"></span> </p>
-                    <p class="fw-bold text-start text-black">Numer konta bankowego: <span class="text-muted" th:text="${dashboardInformations.accountNumber}"></span> </p>
-                </div>
+            <div class="col-8 m-auto" th:if="${transferSuccess} != null">
+                <h4 class="mt-5 mb-3 border-bottom text-success fw-bold" th:text="${transferSuccess}"></h4>
             </div>
-            <hr>
-            <div class="row mt-4 ms-1 justify-content-around">
-                <div class="col-11 bg-red rounded-3 p-3 m-3 table-responsive">
-                    <h4 class="text-start text-white fw-bold ubuntu">-1230,00 zł</h4>
-                    <hr>
-                    <h4 class="text-start text-white fw-bold ubuntu">Aktualny bilans konta, postaraj się popracować nad oszczędzaniem !</h4>
-                </div>
+            <div th:if="${#fields.hasErrors('${transferDto.*}')}">
+                <h4 class="mb-3 mt-4 border-bottom">Błędy</h4>
+                <ul>
+                    <li class="text-muted" th:each="err : ${#fields.errors('transferDto.*')}" th:text="${err}"></li>
+                </ul>
+                <hr>
+            </div>
+            <div th:if="${error != null}">
+                <h4 class="mb-3 mt-4 border-bottom">Błędy</h4>
+                <ul>
+                    <li class="text-muted" th:text="${error}"></li>
+                </ul>
+                <hr>
             </div>
         </main>
     </div>

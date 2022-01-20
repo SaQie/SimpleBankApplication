@@ -30,7 +30,6 @@ public class BankAccount {
     private LocalDate accountCreatedDate;
     private int accountNumberOfRecipients;
     private int accountNumberOfExpenses;
-
-    @OneToMany
-    private List<Transaction> transactions;
+    private BigDecimal allIncomes;
+    private BigDecimal allExpenses;
 }

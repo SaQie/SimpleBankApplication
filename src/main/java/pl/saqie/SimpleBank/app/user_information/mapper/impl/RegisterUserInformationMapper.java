@@ -1,16 +1,17 @@
-package pl.saqie.SimpleBank.app.user_information.mapper;
+package pl.saqie.SimpleBank.app.user_information.mapper.impl;
 
 import org.springframework.stereotype.Service;
 import pl.saqie.SimpleBank.app.user.model.dto.RegisterDto;
-import pl.saqie.SimpleBank.app.user.model.dto.UserGenericDto;
+import pl.saqie.SimpleBank.app.user_information.mapper.UserInformationMapperToEntity;
 import pl.saqie.SimpleBank.app.user_information.model.UserInformation;
+import pl.saqie.SimpleBank.app.utils.BasicDto;
 
 @Service
-public class RegisterUserInformationMapper implements UserInformationMapperToEntity{
+public class RegisterUserInformationMapper implements UserInformationMapperToEntity {
 
     @Override
-    public UserInformation mapDtoToEntity(UserGenericDto genericDto) {
-        RegisterDto dto = (RegisterDto) genericDto;
+    public UserInformation mapDtoToEntity(BasicDto basicDto) {
+        RegisterDto dto = (RegisterDto) basicDto;
         return UserInformation.builder()
                 .firstName(dto.getFirstName())
                 .lastName(dto.getLastName())

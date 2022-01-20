@@ -1,7 +1,8 @@
-package pl.saqie.SimpleBank.app.account.mapper;
+package pl.saqie.SimpleBank.app.account.mapper.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.saqie.SimpleBank.app.account.mapper.DashboardMapperToDto;
 import pl.saqie.SimpleBank.app.account.model.BankAccount;
 import pl.saqie.SimpleBank.app.account.model.dto.DashboardDto;
 import pl.saqie.SimpleBank.app.user.model.User;

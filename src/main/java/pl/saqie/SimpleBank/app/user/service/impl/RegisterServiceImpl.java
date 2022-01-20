@@ -1,4 +1,4 @@
-package pl.saqie.SimpleBank.app.user.service;
+package pl.saqie.SimpleBank.app.user.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,13 +11,14 @@ import pl.saqie.SimpleBank.app.user.mapper.UserMapperToEntity;
 import pl.saqie.SimpleBank.app.user.model.User;
 import pl.saqie.SimpleBank.app.user.model.dto.RegisterDto;
 import pl.saqie.SimpleBank.app.user.repository.UserRepository;
+import pl.saqie.SimpleBank.app.user.service.RegisterService;
 import pl.saqie.SimpleBank.app.user.service.validator.RegisterValidator;
 
 import java.util.List;
 
 @AllArgsConstructor
 @Service
-public class RegisterServiceImpl implements RegisterService{
+public class RegisterServiceImpl implements RegisterService {
 
     private final UserRepository repository;
     private final List<RegisterValidator> validator;

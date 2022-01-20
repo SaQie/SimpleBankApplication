@@ -1,8 +1,9 @@
-package pl.saqie.SimpleBank.app.account.service;
+package pl.saqie.SimpleBank.app.account.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.saqie.SimpleBank.app.account.model.BankAccount;
+import pl.saqie.SimpleBank.app.account.service.BankAccountCreateService;
 import pl.saqie.SimpleBank.app.user.model.User;
 import pl.saqie.SimpleBank.app.utils.AccountNumberGenerator;
 
@@ -24,9 +25,11 @@ public class BankAccountCreateServiceImpl implements BankAccountCreateService {
         return BankAccount.builder()
                 .user(user)
                 .accountBalance(BigDecimal.ZERO)
-                .accountCreatedDate(LocalDate.now())
+                .allIncomes(BigDecimal.ZERO)
+                .allExpenses(BigDecimal.ZERO)
                 .accountNumberOfExpenses(0)
                 .accountNumberOfRecipients(0)
+                .accountCreatedDate(LocalDate.now())
                 .accountNumber(accountNumberGenerator.createAccountNumber())
                 .build();
     }
