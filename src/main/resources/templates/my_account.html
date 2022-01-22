@@ -34,8 +34,8 @@
                     </a>
                     <a href="/myaccount" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
-                        <div class="menu-hover activated"><img src="https://i.imgur.com/fbl3hn1.png" width="20" height="20"> <span
-                                class="ms-1">Moje konto</span></div>
+                        <div class="menu-hover "><img src="https://i.imgur.com/fbl3hn1.png" width="20" height="20"> <span
+                                class="ms-1 activated">Moje konto</span></div>
                     </a>
                     <a href="/incomes" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
@@ -54,12 +54,12 @@
                         <div class="menu-hover"><img src="https://i.imgur.com/QLVCxiW.png" width="20" height="20"> <span
                                 class="ms-1">Twoje dane</span></div>
                     </a>
-                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                    <a href="/change_password" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
                         <div class="menu-hover"><img src="https://i.imgur.com/a2KFETw.png" width="20" height="20"> <span
                                 class="ms-1">Zmiana hasła</span></div>
                     </a>
-                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                    <a href="" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
                         <div class="menu-hover"><img src="https://i.imgur.com/cAUHTLz.png" width="20" height="20"> <span
                                 class="ms-1">Aktywne konta bankowe</span></div>
@@ -104,11 +104,11 @@
             <hr>
             <div class="row ms-1 justify-content-evenly">
                 <div class="col-12 col-xl-3 ms-xl-2 ms-0 mt-xl-0 mt-2 bg-green p-3 pb-3 rounded-3">
-                    <h3 class="text-start text-white" th:text="${information.incomes}"></h3>
+                    <h3 class="text-start text-white" th:text="${information.incomes} + ' zł'"></h3>
                     <h5 class="text-start fw-bold text-white mt-4">Wszystkich wpływów</h5>
                 </div>
                 <div class="col-12 col-xl-3 ms-xl-2 ms-0 mt-xl-0 mt-2 bg-red p-3 me-2 rounded-3">
-                    <h3 class="text-start text-white" th:text="${information.expenses}"></h3>
+                    <h3 class="text-start text-white" th:text="${information.expenses} + ' zł'"></h3>
                     <h5 class="text-start fw-bold text-white mt-4">Wszystkich wydatków</h5>
                 </div>
             </div>

@@ -37,6 +37,7 @@ public class TranasferServiceImpl implements TransferService {
     public void transfer(User user, TransferDto dto) throws AccountNotFoundException, ParseException, NotEnoughMoneyException, SameAccountException {
         BankAccount toBankAccount = findAccount(dto.getAccountNumber());
         BankAccount fromBankAccount = user.getBankAccount();
+        fromBankAccount.setAccountNumberOfExpenses(fromBankAccount.getAccountNumberOfExpenses() + 1);
         BigDecimal value = priceParser.parserPrice(dto.getAmount());
         chain(fromBankAccount, value, toBankAccount);
         changeAccountsValues(toBankAccount, fromBankAccount, value);

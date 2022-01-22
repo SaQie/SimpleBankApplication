@@ -27,5 +27,4 @@ public class DashboardDto extends BasicDto {
     private int accountNumberOfRecipients;
     private int accountNumberOfExpenses;
     private String quote;
-
 }
