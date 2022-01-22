@@ -13,14 +13,12 @@ import pl.saqie.SimpleBank.app.account.exception.AccountNotFoundException;
 import pl.saqie.SimpleBank.app.account.exception.NotEnoughMoneyException;
 import pl.saqie.SimpleBank.app.account.exception.SameAccountException;
 import pl.saqie.SimpleBank.app.account.model.dto.TransferDto;
-import pl.saqie.SimpleBank.app.account.service.TransferService;
-import pl.saqie.SimpleBank.app.transaction.model.Transaction;
+import pl.saqie.SimpleBank.app.transaction.service.TransferService;
 import pl.saqie.SimpleBank.app.transaction.repository.TransactionRepository;
 import pl.saqie.SimpleBank.app.user.model.User;
 
 import javax.validation.Valid;
 import java.text.ParseException;
-import java.util.List;
 
 @Controller
 @AllArgsConstructor

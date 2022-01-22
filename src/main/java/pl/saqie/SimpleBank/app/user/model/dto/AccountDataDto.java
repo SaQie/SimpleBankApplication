@@ -1,8 +1,10 @@
-package pl.saqie.SimpleBank.app.account.model.dto;
+package pl.saqie.SimpleBank.app.user.model.dto;
 
 import lombok.*;
-import pl.saqie.SimpleBank.app.utils.BasicDto;
+import pl.saqie.SimpleBank.app.user.model.Gender;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.time.LocalDate;
 
 @Getter
@@ -10,7 +12,7 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DashboardDto extends BasicDto {
+public class AccountDataDto {
 
     private String firstName;
     private String lastName;
@@ -19,13 +21,10 @@ public class DashboardDto extends BasicDto {
     private String city;
     private String postalCode;
     private String telephoneNumber;
-    private String gender;
+    @Enumerated(value = EnumType.STRING)
+    private Gender gender;
     private String email;
+    private LocalDate createdDate;
     private String accountNumber;
-    private String accountBalance;
-    private LocalDate accountCreatedDate;
-    private int accountNumberOfRecipients;
-    private int accountNumberOfExpenses;
-    private String quote;
 
 }

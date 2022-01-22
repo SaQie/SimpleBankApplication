@@ -1,8 +1,10 @@
 package pl.saqie.SimpleBank.app.user.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import pl.saqie.SimpleBank.app.user.model.User;
+import pl.saqie.SimpleBank.app.user.model.dto.AccountDataDto;
 
 import java.util.Optional;
 
@@ -14,4 +16,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     boolean existsByPesel(String pesel);
 
     boolean existsByEmail(String email);
+
+    @Query("select new pl.saqie.SimpleBank.app.user.model.dto.AccountDataDto(i.firstName, i.lastName, u.pesel, i.adress, i.city, i.postalCode, i.telephoneNumber, i.gender, u.email, u.createdDate, b.accountNumber) from User u join u.bankAccount b join u.userInformation i where u.id = :id")
+    AccountDataDto customFindAccountDataDtoByUserId(Long id);
 }

@@ -1,4 +1,4 @@
-package pl.saqie.SimpleBank.app.account.service.impl;
+package pl.saqie.SimpleBank.app.transaction.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,9 +8,9 @@ import pl.saqie.SimpleBank.app.account.exception.SameAccountException;
 import pl.saqie.SimpleBank.app.account.model.BankAccount;
 import pl.saqie.SimpleBank.app.account.model.dto.TransferDto;
 import pl.saqie.SimpleBank.app.account.repository.BankAccountRepository;
-import pl.saqie.SimpleBank.app.account.service.IncomeMoneyService;
-import pl.saqie.SimpleBank.app.account.service.TransferService;
-import pl.saqie.SimpleBank.app.account.service.WithdrawalMoneyService;
+import pl.saqie.SimpleBank.app.transaction.service.IncomeMoneyService;
+import pl.saqie.SimpleBank.app.transaction.service.TransferService;
+import pl.saqie.SimpleBank.app.transaction.service.WithdrawalMoneyService;
 import pl.saqie.SimpleBank.app.account.service.validator.TransferMoneyValidatorChain;
 import pl.saqie.SimpleBank.app.transaction.service.TransactionService;
 import pl.saqie.SimpleBank.app.user.model.User;

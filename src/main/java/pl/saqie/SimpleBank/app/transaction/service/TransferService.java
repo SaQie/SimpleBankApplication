@@ -1,4 +1,4 @@
-package pl.saqie.SimpleBank.app.account.service;
+package pl.saqie.SimpleBank.app.transaction.service;
 
 import pl.saqie.SimpleBank.app.account.exception.AccountNotFoundException;
 import pl.saqie.SimpleBank.app.account.exception.NotEnoughMoneyException;

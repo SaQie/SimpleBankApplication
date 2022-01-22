@@ -13,7 +13,7 @@ import pl.saqie.SimpleBank.app.user_information.model.UserInformation;
 public class DashboardDtoMapper implements DashboardMapperToDto {
 
     @Override
-    public DashboardDto mapToDto(User user, BankAccount bankAccount, UserInformation userInformation) {
+    public DashboardDto mapToDto(User user, BankAccount bankAccount, UserInformation userInformation, String quote) {
         return DashboardDto.builder()
                 .firstName(userInformation.getFirstName())
                 .lastName(userInformation.getLastName())
@@ -29,6 +29,7 @@ public class DashboardDtoMapper implements DashboardMapperToDto {
                 .city(userInformation.getCity())
                 .postalCode(userInformation.getPostalCode())
                 .telephoneNumber(userInformation.getTelephoneNumber())
+                .quote(quote)
                 .build();
     }
 }

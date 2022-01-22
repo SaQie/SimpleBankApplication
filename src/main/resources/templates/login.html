@@ -23,6 +23,11 @@
                 </ul>
                 <hr>
             </div>
+            <div th:if="${param.logout}">
+                <ul>
+                    <li class="text-muted">Pomyślnie wylogowano z konta.</li>
+                </ul>
+            </div>
             <h4 class="mb-3 border-bottom">Logowanie</h4>
             <form th:action="@{/login}" method="post" >
                 <div class="row g-3 align-self-center">

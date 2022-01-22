@@ -32,7 +32,7 @@
                         <div class="menu-hover"><img src="https://i.imgur.com/yHXUDeR.png" width="20" height="20"> <span
                                 class="ms-1">Wykonaj przelew</span></div>
                     </a>
-                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                    <a href="/myaccount" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
                         <div class="menu-hover"><img src="https://i.imgur.com/fbl3hn1.png" width="20" height="20"> <span
                                 class="ms-1">Moje konto</span></div>
@@ -49,7 +49,7 @@
                     </a>
                     <div class="list-group-item border-end-0 d-inline-block text-black fw-bold text-center ubuntu p-2"
                          data-bs-parent="#sidebar"><h4>Konto użytkownika</h4></div>
-                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                    <a href="/details" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
                         <div class="menu-hover"><img src="https://i.imgur.com/QLVCxiW.png" width="20" height="20"> <span
                                 class="ms-1">Twoje dane</span></div>
@@ -105,7 +105,8 @@
             <div class="col-12 text-center fw-bold text-muted" th:if="${expenses.isEmpty()}">Nie posiadasz wydatków.</div>
             <div class="container mt-5 px-2" th:if="${!expenses.isEmpty()}">
                 <div class="mb-2 d-flex justify-content-between align-items-center">
-                    <div class="px-2">                            <ul class="pagination justify-content-end">
+                    <div class="px-2">
+                        <ul class="pagination justify-content-end">
                         <li class="page-item">
                             <a class="page-link" th:if="${currentPage > 1}" th:href="@{'?page=' + ${currentPage - 1}}" tabindex="-1">Poprzednia</a>
                         </li>
@@ -118,19 +119,18 @@
                     </ul></div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-responsive table-borderless">
+                    <table class="table table-responsive">
                         <thead>
-                        <hr>
                         <tr class="bg-light">
-                            <th scope="col" width="5%">L.P</th>
-                            <th scope="col" width="20%">Data</th>
-                            <th scope="col" width="10%">Opis</th>
-                            <th scope="col" width="20%">Wartość</th>
-                            <th scope="col" width="20%">Numer konta</th>
+                            <th scope="col" class="text-center" width="5%">L.P</th>
+                            <th scope="col" class="text-center" width="20%">Data</th>
+                            <th scope="col" class="text-center" width="10%">Opis</th>
+                            <th scope="col" class="text-center" width="20%">Wartość</th>
+                            <th scope="col" class="text-center" width="20%">Numer konta</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="expense, count: ${expenses}">
+                        <tr class="text-center" th:each="expense, count: ${expenses}">
                             <th th:text="${count.count}"></th>
                             <td th:text="${expense.date}"></td>
                             <td th:text="${expense.description}"></td>
@@ -139,7 +139,6 @@
                         </tr>
                         </tbody>
                     </table>
-                    <hr>
                     <div class="col-12 text-muted fw-bold text-center" th:if="${expenses.get(0) != null}" th:text="'Twoje wszystkie wydatki: ' + ${expenses.get(0).allExpenses} + ' zł'"></div>
                 </div>
             </div>

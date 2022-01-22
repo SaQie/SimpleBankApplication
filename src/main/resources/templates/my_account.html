@@ -34,13 +34,13 @@
                     </a>
                     <a href="/myaccount" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
-                        <div class="menu-hover"><img src="https://i.imgur.com/fbl3hn1.png" width="20" height="20"> <span
+                        <div class="menu-hover activated"><img src="https://i.imgur.com/fbl3hn1.png" width="20" height="20"> <span
                                 class="ms-1">Moje konto</span></div>
                     </a>
                     <a href="/incomes" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
                         <div class="menu-hover"><img src="https://i.imgur.com/tZ9qXsV.png" width="20" height="20"> <span
-                                class="ms-1 activated">Przychody</span></div>
+                                class="ms-1">Przychody</span></div>
                     </a>
                     <a href="/expenses" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
@@ -98,50 +98,30 @@
         </div>
         <main class="col ps-md-2 pt-2">
             <div class="page-header pt-3">
-                <h2>Przychody</h2>
+                <h2>Moje konto</h2>
             </div>
-            <p class="lead">Tutaj znajdziesz wszystkie przychody Twojego konta</p>
+            <p class="lead">Tutaj znajdziesz statystyki Twojego konta bankowego.</p>
             <hr>
-            <div class="col-12 text-center fw-bold text-muted" th:if="${incomes.isEmpty()}">Nie posiadasz przychodów.</div>
-            <div class="container mt-5 px-2" th:if="${!incomes.isEmpty()}">
-                <div class="mb-2 d-flex justify-content-between align-items-center">
-                    <div class="px-2">                            <ul class="pagination justify-content-end">
-                        <li class="page-item">
-                            <a class="page-link" th:if="${currentPage > 1}" th:href="@{'?page=' + ${currentPage - 1}}" tabindex="-1">Poprzednia</a>
-                        </li>
-                        <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}">
-                            <a class="page-link" th:href="@{'?page=' + ${i}}" th:text="${i}"></a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" th:if="${currentPage != totalPages}" th:href="@{'?page=' + ${currentPage + 1}}">Następna</a>
-                        </li>
-                    </ul></div>
+            <div class="row ms-1 justify-content-evenly">
+                <div class="col-12 col-xl-3 ms-xl-2 ms-0 mt-xl-0 mt-2 bg-green p-3 pb-3 rounded-3">
+                    <h3 class="text-start text-white" th:text="${information.incomes}"></h3>
+                    <h5 class="text-start fw-bold text-white mt-4">Wszystkich wpływów</h5>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-responsive">
-                        <thead>
-                        <hr>
-                        <tr class="bg-light">
-                            <th scope="col" class="text-center" width="5%">L.P</th>
-                            <th scope="col" class="text-center" width="20%">Data</th>
-                            <th scope="col" class="text-center" width="10%">Opis</th>
-                            <th scope="col" class="text-center" width="20%">Wartość</th>
-                            <th scope="col" class="text-center" width="20%">Numer konta</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="text-center" th:each="incomes, count: ${incomes}">
-                            <th th:text="${count.count}"></th>
-                            <td th:text="${incomes.date}"></td>
-                            <td th:text="${incomes.description}"></td>
-                            <td th:text="${incomes.amount} + ' zł'"></td>
-                            <td th:text="${incomes.accountNumberFrom}"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="col-12 text-muted fw-bold text-center" th:if="${incomes.get(0) != null}" th:text="'Twoje wszystkie przychody: ' + ${incomes.get(0).allIncomes} + ' zł'"></div>
+                <div class="col-12 col-xl-3 ms-xl-2 ms-0 mt-xl-0 mt-2 bg-red p-3 me-2 rounded-3">
+                    <h3 class="text-start text-white" th:text="${information.expenses}"></h3>
+                    <h5 class="text-start fw-bold text-white mt-4">Wszystkich wydatków</h5>
                 </div>
             </div>
+            <div class="row mt-4 ms-1 justify-content-around">
+                <div class="col-11 rounded-3 p-3 m-3 table-responsive">
+                    <h5 class="text-start text-black fw-bold ubuntu">Podpowiedz:</h5>
+                    <hr>
+                    <p class="text-start fw-bold ubuntu" style="font-size: 15px; color: darkred"  th:if="${information.expenses > information.incomes}">Niestety, wydajesz więcej niż zarabiasz, postaraj się więcej oszczędzać !</p>
+                    <p class="text-start fw-bold ubuntu" style="font-size: 15px; color: darkgreen"  th:if="${information.expenses < information.incomes}">Brawo ! udaje Ci się gromadzić pieniądze na koncie, oby tak dalej !</p>
+                    <p class="text-start text-muted fw-bold ubuntu" style="font-size: 15px"  th:if="${information.expenses == information.incomes}">Uważaj, wydajesz wszystko co zarabiasz, postaraj się zawsze coś zostawić na czarną godzinę.</p>
+                </div>
+            </div>
+            <hr>
         </main>
     </div>
 </div>

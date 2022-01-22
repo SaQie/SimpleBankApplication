@@ -7,6 +7,6 @@ import pl.saqie.SimpleBank.app.utils.BasicDto;
 
 public interface DashboardMapperToDto {
 
-    BasicDto mapToDto(User user, BankAccount bankAccount, UserInformation userInformation);
+    BasicDto mapToDto(User user, BankAccount bankAccount, UserInformation userInformation, String quote);
 
 }

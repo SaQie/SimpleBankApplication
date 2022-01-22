@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class TimeParser{
 
     public static String parseTime(LocalDateTime time) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm");
         return time.format(formatter);
     }
 }

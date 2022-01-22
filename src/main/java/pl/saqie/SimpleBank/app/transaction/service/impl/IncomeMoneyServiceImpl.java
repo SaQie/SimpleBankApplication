@@ -1,8 +1,8 @@
-package pl.saqie.SimpleBank.app.account.service.impl;
+package pl.saqie.SimpleBank.app.transaction.service.impl;
 
 import org.springframework.stereotype.Service;
 import pl.saqie.SimpleBank.app.account.model.BankAccount;
-import pl.saqie.SimpleBank.app.account.service.IncomeMoneyService;
+import pl.saqie.SimpleBank.app.transaction.service.IncomeMoneyService;
 
 import java.math.BigDecimal;
 

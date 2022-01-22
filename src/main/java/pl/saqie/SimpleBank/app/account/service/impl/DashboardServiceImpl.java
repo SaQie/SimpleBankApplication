@@ -8,12 +8,14 @@ import pl.saqie.SimpleBank.app.account.model.dto.DashboardDto;
 import pl.saqie.SimpleBank.app.account.service.DashboardService;
 import pl.saqie.SimpleBank.app.user.model.User;
 import pl.saqie.SimpleBank.app.user_information.model.UserInformation;
+import pl.saqie.SimpleBank.app.utils.RandomQuote;
 
 @Service
 @AllArgsConstructor
 public class DashboardServiceImpl implements DashboardService {
 
     private final DashboardMapperToDto mapperToDto;
+    private final RandomQuote randomQuote;
 
     @Override
     public DashboardDto getDashboardInformations(User user) {
@@ -23,6 +25,7 @@ public class DashboardServiceImpl implements DashboardService {
     private DashboardDto mapToDashboardDto(User user) {
         BankAccount userBankAccount = user.getBankAccount();
         UserInformation userInformations = user.getUserInformation();
-        return (DashboardDto) mapperToDto.mapToDto(user,userBankAccount,userInformations);
+        String quote = randomQuote.generateRandomQuote();
+        return (DashboardDto) mapperToDto.mapToDto(user,userBankAccount,userInformations, quote);
     }
 }
