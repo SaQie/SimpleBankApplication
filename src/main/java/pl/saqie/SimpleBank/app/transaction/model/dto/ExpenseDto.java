@@ -1,4 +1,4 @@
-package pl.saqie.SimpleBank.app.account.model.dto;
+package pl.saqie.SimpleBank.app.transaction.model.dto;
 
 import lombok.*;
 import pl.saqie.SimpleBank.app.utils.TimeParser;
@@ -11,19 +11,19 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class IncomeDto {
+public class ExpenseDto{
 
+    private Long id;
     private String description;
     private BigDecimal amount;
     private String date;
     private String accountNumberFrom;
-    private BigDecimal allIncomes;
 
-    public IncomeDto(String description, BigDecimal amount, LocalDateTime date, String accountNumberFrom, BigDecimal allIncomes) {
+    public ExpenseDto(Long id,String description, BigDecimal amount, LocalDateTime date, String accountNumberFrom) {
+        this.id = id;
         this.description = description;
         this.amount = amount;
         this.date = TimeParser.parseTime(date);
         this.accountNumberFrom = accountNumberFrom;
-        this.allIncomes = allIncomes;
     }
 }

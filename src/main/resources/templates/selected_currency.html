@@ -45,7 +45,7 @@
                     <a href="/expenses" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
                         <div class="menu-hover"><img src="https://i.imgur.com/VHoRMmu.png" width="20" height="20"> <span
-                                class="ms-1 activated">Wydatki</span></div>
+                                class="ms-1">Wydatki</span></div>
                     </a>
                     <div class="list-group-item border-end-0 d-inline-block text-black fw-bold text-center ubuntu p-2"
                          data-bs-parent="#sidebar"><h4>Konto użytkownika</h4></div>
@@ -79,7 +79,7 @@
                     <a href="/currency" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
                         <div class="menu-hover"><img src="https://i.imgur.com/FkjiLDs.png" width="20" height="20"> <span
-                                class="ms-1">Kurs konkretnej waluty</span></div>
+                                class="ms-1 activated">Kurs konkretnej waluty</span></div>
                     </a>
                     <div class="list-group-item border-end-0 d-inline-block text-black fw-bold text-center ubuntu p-2"
                          data-bs-parent="#sidebar"><h4>Zapisani odbiorcy</h4></div>
@@ -98,48 +98,23 @@
         </div>
         <main class="col ps-md-2 pt-2">
             <div class="page-header pt-3">
-                <h2>Wydatki</h2>
+                <h2>Kursy konkretnej waluty</h2>
             </div>
-            <p class="lead">Tutaj znajdziesz wszystkie wydatki Twojego konta</p>
+            <p class="lead">Tutaj znajdziesz kurs wybranej przez siebie waluty</p>
             <hr>
-            <div class="col-12 text-center fw-bold text-muted" th:if="${expenses.isEmpty()}">Nie posiadasz wydatków.</div>
-            <div class="container mt-5 px-2" th:if="${!expenses.isEmpty()}">
-                <div class="mb-2 d-flex justify-content-between align-items-center">
-                    <div class="px-2">
-                        <ul class="pagination justify-content-end">
-                        <li class="page-item">
-                            <a class="page-link" th:if="${currentPage > 1}" th:href="@{'?page=' + ${currentPage - 1}}" tabindex="-1">Poprzednia</a>
-                        </li>
-                        <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}">
-                            <a class="page-link" th:href="@{'?page=' + ${i}}" th:text="${i}"></a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" th:if="${currentPage != totalPages}" th:href="@{'?page=' + ${currentPage + 1}}">Następna</a>
-                        </li>
-                    </ul></div>
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-responsive table-hover">
-                        <thead>
-                        <tr class="bg-light">
-                            <th scope="col" class="text-center" width="5%">L.P</th>
-                            <th scope="col" class="text-center" width="20%">Data</th>
-                            <th scope="col" class="text-center" width="10%">Opis</th>
-                            <th scope="col" class="text-center" width="20%">Wartość</th>
-                            <th scope="col" class="text-center" width="20%">Numer konta</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="text-center" th:each="expense, count: ${expenses}">
-                            <th th:text="${count.count}"></th>
-                            <td th:text="${expense.date}"></td>
-                            <td th:text="${expense.description}"></td>
-                            <td th:text="${expense.amount} + ' zł'"></td>
-                            <td th:text="${expense.accountNumberFrom}"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="text-danger fw-bold text-center" th:if="${error != null}" th:text="${error}"></div>
+            <div class="text-center" th:if="${error == null}">
+                <h2 th:text="'Kurs waluty ' + ${currency.currency} + ' (' + ${currency.code} + ')'"></h2>
+            </div>
+            <br>
+            <div class="text-center fw-bold" th:if="${error == null}">
+                <span class="text-black">Waluta: </span><span class="text-muted" th:text="${currency.currency}"></span>
+                <span class="text-black">Kod: </span><span class="text-muted" th:text="${currency.code}"></span>
+                <span class="text-black">Kupno: </span><span class="text-muted" th:text="${currency.rates.get(0).ask}"></span>
+                <span class="text-black">Sprzedaż: </span><span class="text-muted" th:text="${currency.rates.get(0).bid}"></span>
+                <hr>
+                <div class="text-muted text-center" th:text="'Dane aktualne na dzień: ' + ${currency.rates.get(0).effectiveDate}"></div>
+                <a href="/currency"><button class="mt-4 btn btn-outline-dark" type="submit">Powrót do listy walut</button></a>
             </div>
         </main>
     </div>

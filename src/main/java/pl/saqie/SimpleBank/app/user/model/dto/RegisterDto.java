@@ -2,9 +2,7 @@ package pl.saqie.SimpleBank.app.user.model.dto;
 
 import lombok.*;
 import org.hibernate.validator.constraints.pl.PESEL;
-import org.springframework.format.annotation.NumberFormat;
 import pl.saqie.SimpleBank.app.user.model.Gender;
-import pl.saqie.SimpleBank.app.utils.BasicDto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -16,7 +14,7 @@ import javax.validation.constraints.Size;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegisterDto extends BasicDto {
+public class RegisterDto{
 
     @PESEL(message = "Wprowadz poprawny numer PESEL")
     private String pesel;

@@ -59,7 +59,7 @@
                         <div class="menu-hover"><img src="https://i.imgur.com/a2KFETw.png" width="20" height="20"> <span
                                 class="ms-1">Zmiana hasła</span></div>
                     </a>
-                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                    <a href="/banks" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
                         <div class="menu-hover"><img src="https://i.imgur.com/cAUHTLz.png" width="20" height="20"> <span
                                 class="ms-1">Aktywne konta bankowe</span></div>
@@ -71,12 +71,12 @@
                     </a>
                     <div class="list-group-item border-end-0 d-inline-block text-black fw-bold text-center ubuntu p-2"
                          data-bs-parent="#sidebar"><h4>Kantor walut</h4></div>
-                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                    <a href="/currencies" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
                         <div class="menu-hover"><img src="https://i.imgur.com/bnhLfry.png" width="20" height="20"> <span
                                 class="ms-1">Kursy wszystkich walut</span></div>
                     </a>
-                    <a href="#" class="list-group-item border-end-0 d-inline-block text-muted"
+                    <a href="/currency" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
                         <div class="menu-hover"><img src="https://i.imgur.com/FkjiLDs.png" width="20" height="20"> <span
                                 class="ms-1">Kurs konkretnej waluty</span></div>
@@ -102,20 +102,25 @@
             </div>
             <p class="lead">Tutaj znajdziesz wszystkie przychody Twojego konta</p>
             <hr>
-            <div class="col-12 text-center fw-bold text-muted" th:if="${incomes.isEmpty()}">Nie posiadasz przychodów.</div>
+            <div class="col-12 text-center fw-bold text-muted" th:if="${incomes.isEmpty()}">Nie posiadasz przychodów.
+            </div>
             <div class="container mt-5 px-2" th:if="${!incomes.isEmpty()}">
                 <div class="mb-2 d-flex justify-content-between align-items-center">
-                    <div class="px-2">                            <ul class="pagination justify-content-end">
-                        <li class="page-item">
-                            <a class="page-link" th:if="${currentPage > 1}" th:href="@{'?page=' + ${currentPage - 1}}" tabindex="-1">Poprzednia</a>
-                        </li>
-                        <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}">
-                            <a class="page-link" th:href="@{'?page=' + ${i}}" th:text="${i}"></a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" th:if="${currentPage != totalPages}" th:href="@{'?page=' + ${currentPage + 1}}">Następna</a>
-                        </li>
-                    </ul></div>
+                    <div class="px-2">
+                        <ul class="pagination justify-content-end">
+                            <li class="page-item">
+                                <a class="page-link" th:if="${currentPage > 1}"
+                                   th:href="@{'?page=' + ${currentPage - 1}}" tabindex="-1">Poprzednia</a>
+                            </li>
+                            <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}">
+                                <a class="page-link" th:href="@{'?page=' + ${i}}" th:text="${i}"></a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" th:if="${currentPage != totalPages}"
+                                   th:href="@{'?page=' + ${currentPage + 1}}">Następna</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-responsive table-hover">
@@ -138,11 +143,11 @@
                         </tr>
                         </tbody>
                     </table>
-                    <div class="col-12 text-muted fw-bold text-center" th:if="${incomes.get(0) != null}" th:text="'Twoje wszystkie przychody: ' + ${incomes.get(0).allIncomes} + ' zł'"></div>
                 </div>
             </div>
         </main>
     </div>
+</div>
 </div>
 </body>
 </html>

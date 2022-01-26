@@ -24,7 +24,7 @@ public class BankAccountCreateServiceImpl implements BankAccountCreateService {
     private BankAccount buildNewBankAccount(User user) {
         return BankAccount.builder()
                 .user(user)
-                .accountBalance(BigDecimal.ZERO)
+                .accountBalance(BigDecimal.valueOf(50.00))
                 .allIncomes(BigDecimal.ZERO)
                 .allExpenses(BigDecimal.ZERO)
                 .accountNumberOfExpenses(0)

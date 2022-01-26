@@ -7,7 +7,6 @@ import pl.saqie.SimpleBank.app.user.mapper.UserMapperToEntity;
 import pl.saqie.SimpleBank.app.user.model.User;
 import pl.saqie.SimpleBank.app.user.model.dto.RegisterDto;
 import pl.saqie.SimpleBank.app.user_information.mapper.UserInformationMapperToEntity;
-import pl.saqie.SimpleBank.app.utils.BasicDto;
 
 import java.time.LocalDate;
 
@@ -19,14 +18,13 @@ public class RegisterDtoMapper implements UserMapperToEntity {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public User mapDtoToEntity(BasicDto basicDto) {
-        RegisterDto dto = (RegisterDto) basicDto;
+    public User mapDtoToEntity(RegisterDto registerDto) {
         return User.builder()
-                .pesel(dto.getPesel())
+                .pesel(registerDto.getPesel())
                 .createdDate(LocalDate.now())
-                .password(passwordEncoder.getPasswordEncoder().encode(dto.getPassword()))
-                .email(dto.getEmail())
-                .userInformation(mapperToEntity.mapDtoToEntity(dto))
+                .password(passwordEncoder.getPasswordEncoder().encode(registerDto.getPassword()))
+                .email(registerDto.getEmail())
+                .userInformation(mapperToEntity.mapDtoToEntity(registerDto))
                 .build();
     }
 }

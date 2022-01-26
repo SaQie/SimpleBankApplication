@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.saqie.SimpleBank.app.account.model.dto.IncomeDto;
-import pl.saqie.SimpleBank.app.account.service.IncomeService;
+import pl.saqie.SimpleBank.app.transaction.service.IncomeService;
+import pl.saqie.SimpleBank.app.transaction.model.dto.IncomeDto;
 import pl.saqie.SimpleBank.app.user.model.User;
 
 @Controller
@@ -27,5 +27,4 @@ public class IncomeController {
         model.addAttribute("currentPage", page);
         return "incomes";
     }
-
 }

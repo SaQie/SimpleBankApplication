@@ -26,6 +26,6 @@ public class DashboardServiceImpl implements DashboardService {
         BankAccount userBankAccount = user.getBankAccount();
         UserInformation userInformations = user.getUserInformation();
         String quote = randomQuote.generateRandomQuote();
-        return (DashboardDto) mapperToDto.mapToDto(user,userBankAccount,userInformations, quote);
+        return mapperToDto.mapToDto(user,userBankAccount,userInformations, quote);
     }
 }

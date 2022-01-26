@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.saqie.SimpleBank.app.account.exception.AccountNotFoundException;
 import pl.saqie.SimpleBank.app.account.exception.NotEnoughMoneyException;
 import pl.saqie.SimpleBank.app.account.exception.SameAccountException;
-import pl.saqie.SimpleBank.app.account.model.dto.TransferDto;
+import pl.saqie.SimpleBank.app.transaction.model.dto.TransferDto;
 import pl.saqie.SimpleBank.app.transaction.service.TransferService;
 import pl.saqie.SimpleBank.app.transaction.repository.TransactionRepository;
 import pl.saqie.SimpleBank.app.user.model.User;

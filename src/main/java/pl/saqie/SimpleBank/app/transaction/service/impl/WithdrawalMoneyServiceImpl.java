@@ -13,5 +13,6 @@ public class WithdrawalMoneyServiceImpl implements WithdrawalMoneyService {
     public void withdrawalMoney(BankAccount account, BigDecimal amount) {
         account.setAccountBalance(account.getAccountBalance().subtract(amount));
         account.setAllExpenses(account.getAllExpenses().add(amount));
+        account.setAccountNumberOfExpenses(account.getAccountNumberOfExpenses() + 1);
     }
 }

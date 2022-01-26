@@ -1,4 +1,4 @@
-package pl.saqie.SimpleBank.app.account.model.dto;
+package pl.saqie.SimpleBank.app.transaction.model.dto;
 
 import lombok.*;
 import org.springframework.format.annotation.NumberFormat;

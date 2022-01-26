@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.saqie.SimpleBank.app.account.model.dto.ExpenseDto;
-import pl.saqie.SimpleBank.app.account.service.ExpensesService;
+import pl.saqie.SimpleBank.app.transaction.model.dto.ExpenseDto;
+import pl.saqie.SimpleBank.app.transaction.service.ExpensesService;
 import pl.saqie.SimpleBank.app.user.model.User;
 
 @Controller

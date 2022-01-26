@@ -45,7 +45,7 @@
                     <a href="/expenses" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
                         <div class="menu-hover"><img src="https://i.imgur.com/VHoRMmu.png" width="20" height="20"> <span
-                                class="ms-1 activated">Wydatki</span></div>
+                                class="ms-1">Wydatki</span></div>
                     </a>
                     <div class="list-group-item border-end-0 d-inline-block text-black fw-bold text-center ubuntu p-2"
                          data-bs-parent="#sidebar"><h4>Konto użytkownika</h4></div>
@@ -74,7 +74,7 @@
                     <a href="/currencies" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
                         <div class="menu-hover"><img src="https://i.imgur.com/bnhLfry.png" width="20" height="20"> <span
-                                class="ms-1">Kursy wszystkich walut</span></div>
+                                class="ms-1 activated">Kursy wszystkich walut</span></div>
                     </a>
                     <a href="/currency" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
@@ -98,49 +98,29 @@
         </div>
         <main class="col ps-md-2 pt-2">
             <div class="page-header pt-3">
-                <h2>Wydatki</h2>
+                <h2>Kursy wszystkich walut</h2>
             </div>
-            <p class="lead">Tutaj znajdziesz wszystkie wydatki Twojego konta</p>
+            <p class="lead">Tutaj znajdziesz aktualne kursy walut</p>
             <hr>
-            <div class="col-12 text-center fw-bold text-muted" th:if="${expenses.isEmpty()}">Nie posiadasz wydatków.</div>
-            <div class="container mt-5 px-2" th:if="${!expenses.isEmpty()}">
-                <div class="mb-2 d-flex justify-content-between align-items-center">
-                    <div class="px-2">
-                        <ul class="pagination justify-content-end">
-                        <li class="page-item">
-                            <a class="page-link" th:if="${currentPage > 1}" th:href="@{'?page=' + ${currentPage - 1}}" tabindex="-1">Poprzednia</a>
-                        </li>
-                        <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}">
-                            <a class="page-link" th:href="@{'?page=' + ${i}}" th:text="${i}"></a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" th:if="${currentPage != totalPages}" th:href="@{'?page=' + ${currentPage + 1}}">Następna</a>
-                        </li>
-                    </ul></div>
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-responsive table-hover">
-                        <thead>
-                        <tr class="bg-light">
-                            <th scope="col" class="text-center" width="5%">L.P</th>
-                            <th scope="col" class="text-center" width="20%">Data</th>
-                            <th scope="col" class="text-center" width="10%">Opis</th>
-                            <th scope="col" class="text-center" width="20%">Wartość</th>
-                            <th scope="col" class="text-center" width="20%">Numer konta</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="text-center" th:each="expense, count: ${expenses}">
-                            <th th:text="${count.count}"></th>
-                            <td th:text="${expense.date}"></td>
-                            <td th:text="${expense.description}"></td>
-                            <td th:text="${expense.amount} + ' zł'"></td>
-                            <td th:text="${expense.accountNumberFrom}"></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <table class="table table table-striped table-hover">
+                <caption th:text="'Dane aktualne na dzień ' + ${currencies[0].effectiveDate}"></caption>
+                <thead>
+                <tr>
+                    <th scope="col">Waluta</th>
+                    <th scope="col">Kod</th>
+                    <th scope="col">Kupno</th>
+                    <th scope="col">Sprzedaż</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="values : ${currencies[0].rates}">
+                    <th scope="row" th:text="${values.currency.toUpperCase()}"></th>
+                    <td th:text="${values.code}"></td>
+                    <td th:text="${values.ask} + ' zł'"></td>
+                    <td th:text="${values.bid} + ' zł'"></td>
+                </tr>
+                </tbody>
+            </table>
         </main>
     </div>
 </div>

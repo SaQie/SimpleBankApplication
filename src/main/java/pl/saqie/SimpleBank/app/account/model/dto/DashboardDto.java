@@ -1,7 +1,7 @@
 package pl.saqie.SimpleBank.app.account.model.dto;
 
 import lombok.*;
-import pl.saqie.SimpleBank.app.utils.BasicDto;
+
 
 import java.time.LocalDate;
 
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DashboardDto extends BasicDto {
+public class DashboardDto{
 
     private String firstName;
     private String lastName;
