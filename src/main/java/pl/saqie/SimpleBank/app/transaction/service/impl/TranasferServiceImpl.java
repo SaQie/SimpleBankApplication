@@ -14,7 +14,7 @@ import pl.saqie.SimpleBank.app.transaction.service.WithdrawalMoneyService;
 import pl.saqie.SimpleBank.app.account.service.validator.TransferMoneyValidatorChain;
 import pl.saqie.SimpleBank.app.transaction.service.TransactionService;
 import pl.saqie.SimpleBank.app.user.model.User;
-import pl.saqie.SimpleBank.app.utils.PriceParser;
+import pl.saqie.SimpleBank.app.transaction.service.PriceParser;
 
 import java.math.BigDecimal;
 import java.text.ParseException;

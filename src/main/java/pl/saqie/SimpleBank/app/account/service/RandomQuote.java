@@ -1,4 +1,4 @@
-package pl.saqie.SimpleBank.app.utils;
+package pl.saqie.SimpleBank.app.account.service;
 
 public interface RandomQuote {
 

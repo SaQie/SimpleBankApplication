@@ -1,13 +1,14 @@
-package pl.saqie.SimpleBank.app.utils;
+package pl.saqie.SimpleBank.app.account.service.impl;
 
 import org.springframework.stereotype.Component;
+import pl.saqie.SimpleBank.app.account.service.RandomQuote;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 @Component
-public class RandomQuoteImpl implements RandomQuote{
+public class RandomQuoteImpl implements RandomQuote {
 
     private static final List<String> quotations = Arrays.asList("Nie mów mi, jakie są twoje priorytety. Pokaż mi, na co wydajesz pieniądze, a sam ci powiem, gdzie one są. - JAMES W. FRICK",
             "Zrobić budżet to wskazać swoim pieniądzom, dokąd mają iść, zamiast się zastanawiać, gdzie się rozeszły. - JOHN C.MAXWELL",

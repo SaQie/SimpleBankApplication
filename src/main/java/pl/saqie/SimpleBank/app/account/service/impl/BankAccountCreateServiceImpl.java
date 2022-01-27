@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.saqie.SimpleBank.app.account.model.BankAccount;
 import pl.saqie.SimpleBank.app.account.service.BankAccountCreateService;
 import pl.saqie.SimpleBank.app.user.model.User;
-import pl.saqie.SimpleBank.app.utils.AccountNumberGenerator;
+import pl.saqie.SimpleBank.app.account.service.AccountNumberGenerator;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

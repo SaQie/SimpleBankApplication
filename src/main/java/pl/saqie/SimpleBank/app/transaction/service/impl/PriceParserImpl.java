@@ -1,6 +1,7 @@
-package pl.saqie.SimpleBank.app.utils;
+package pl.saqie.SimpleBank.app.transaction.service.impl;
 
 import org.springframework.stereotype.Component;
+import pl.saqie.SimpleBank.app.transaction.service.PriceParser;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -9,7 +10,7 @@ import java.text.ParseException;
 import java.util.Locale;
 
 @Component
-public class PriceParserImpl implements PriceParser{
+public class PriceParserImpl implements PriceParser {
 
 
     @Override

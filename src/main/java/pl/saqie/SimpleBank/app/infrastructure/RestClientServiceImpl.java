@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.saqie.SimpleBank.app.infrastructure.dto.AllCurrenciesGeneralDto;
 import pl.saqie.SimpleBank.app.infrastructure.dto.SingleCurrencyGeneralDto;
-import pl.saqie.SimpleBank.app.utils.RestClient;
 
 @Service
 @AllArgsConstructor

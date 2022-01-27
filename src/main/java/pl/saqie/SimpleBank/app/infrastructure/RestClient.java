@@ -1,4 +1,4 @@
-package pl.saqie.SimpleBank.app.utils;
+package pl.saqie.SimpleBank.app.infrastructure;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;

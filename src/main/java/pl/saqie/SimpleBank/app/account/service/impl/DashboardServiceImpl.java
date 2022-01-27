@@ -8,7 +8,7 @@ import pl.saqie.SimpleBank.app.account.model.dto.DashboardDto;
 import pl.saqie.SimpleBank.app.account.service.DashboardService;
 import pl.saqie.SimpleBank.app.user.model.User;
 import pl.saqie.SimpleBank.app.user_information.model.UserInformation;
-import pl.saqie.SimpleBank.app.utils.RandomQuote;
+import pl.saqie.SimpleBank.app.account.service.RandomQuote;
 
 @Service
 @AllArgsConstructor

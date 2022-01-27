@@ -1,13 +1,14 @@
-package pl.saqie.SimpleBank.app.utils;
+package pl.saqie.SimpleBank.app.account.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import pl.saqie.SimpleBank.app.account.service.AccountNumberGenerator;
 
 import java.util.Random;
 
 @Component
 @AllArgsConstructor
-public class AccountNumberGeneratorImpl implements AccountNumberGenerator{
+public class AccountNumberGeneratorImpl implements AccountNumberGenerator {
 
     @Override
     public String createAccountNumber() {

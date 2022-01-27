@@ -1,4 +1,4 @@
-package pl.saqie.SimpleBank.app.utils;
+package pl.saqie.SimpleBank.app.transaction.service;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
