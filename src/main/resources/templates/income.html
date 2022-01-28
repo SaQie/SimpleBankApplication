@@ -98,58 +98,36 @@
         </div>
         <main class="col ps-md-2 pt-2">
             <div class="page-header pt-3">
-                <h2>Przychody</h2>
+                <h2>Wpływ</h2>
             </div>
-            <p class="lead">Tutaj znajdziesz wszystkie przychody Twojego konta</p>
+            <p class="lead">Tutaj znajdziesz informacje o konkretnym wpływie</p>
             <hr>
-            <div class="col-12 text-center fw-bold text-muted" th:if="${incomes.isEmpty()}">Nie posiadasz przychodów.
-            </div>
-            <div class="container mt-5 px-2" th:if="${!incomes.isEmpty()}">
-                <div class="mb-2 d-flex justify-content-between align-items-center">
-                    <div class="px-2">
-                        <ul class="pagination justify-content-end">
-                            <li class="page-item">
-                                <a class="page-link" th:if="${currentPage > 1}"
-                                   th:href="@{'?page=' + ${currentPage - 1}}" tabindex="-1">Poprzednia</a>
-                            </li>
-                            <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}">
-                                <a class="page-link" th:href="@{'?page=' + ${i}}" th:text="${i}"></a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" th:if="${currentPage != totalPages}"
-                                   th:href="@{'?page=' + ${currentPage + 1}}">Następna</a>
-                            </li>
-                        </ul>
-                    </div>
+            <div class="fw-bold col-12 text-danger" th:if="${error != null}" th:text="${error}"></div>
+            <div class="row ms-1 justify-content-around" th:if="${error == null}">
+                <div class="col-12 fw-bold text-center p-5" th:text="'Przelew wysłany dnia: ' + ${income.date} + ' | Kwota przelewu: ' + ${income.value} + ' zł | Opis: ' + ${income.description} + ' |'"></div>
+                <div class="col-12 col-xl-5 mt-xl-0 mt-2 bg-white rounded-3 p-4 me-2 table-responsive">
+                    <h3 class="text-start text-black fw-bold ubuntu">Dane nadawcy</h3>
+                    <hr>
+                    <p class="fw-bold text-start text-black">Imię: <span class="text-muted" th:text="${income.from.firstName}"></span> </p>
+                    <p class="fw-bold text-start text-black">Nazwisko: <span class="text-muted" th:text="${income.from.lastName}"></span> </p>
+                    <p class="fw-bold text-start text-black">Adres: <span class="text-muted" th:text="${income.from.adress}"></span> </p>
+                    <p class="fw-bold text-start text-black">Kod pocztowy: <span class="text-muted" th:text="${income.from.postalCode}"></span> </p>
+                    <p class="fw-bold text-start text-black">Miasto: <span class="text-muted" th:text="${income.from.city}"></span> </p>
+                    <p class="fw-bold text-start text-black">Numer konta nadawcy: <span class="text-muted" th:text="${income.from.bankAccountNumber}"></span> </p>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-responsive table-hover">
-                        <thead>
-                        <tr class="bg-light">
-                            <th scope="col" class="text-center" width="5%">L.P</th>
-                            <th scope="col" class="text-center" width="20%">Data</th>
-                            <th scope="col" class="text-center" width="10%">Opis</th>
-                            <th scope="col" class="text-center" width="20%">Wartość</th>
-                            <th scope="col" class="text-center" width="20%">Numer konta</th>
-                            <th scope="col" class="text-center" width="20%">Akcja</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="text-center" th:each="income, count: ${incomes}">
-                            <th th:text="${count.count}"></th>
-                            <td th:text="${income.date}"></td>
-                            <td th:text="${income.description}"></td>
-                            <td th:text="${income.amount} + ' zł'"></td>
-                            <td th:text="${income.accountNumberFrom}"></td>
-                            <td><a th:href="'/income/' + ${income.id}">Szczegóły</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div class="col-12 col-xl-5 mt-xl-0 mt-2 bg-white rounded-3 p-4 me-2 table-responsive">
+                    <h3 class="text-start text-black fw-bold ubuntu">Dane odbiorcy</h3>
+                    <hr>
+                    <p class="fw-bold text-start text-black">Imię: <span class="text-muted" th:text="${income.to.firstName}"></span> </p>
+                    <p class="fw-bold text-start text-black">Nazwisko: <span class="text-muted" th:text="${income.to.lastName}"></span> </p>
+                    <p class="fw-bold text-start text-black">Adres: <span class="text-muted" th:text="${income.to.adress}"></span> </p>
+                    <p class="fw-bold text-start text-black">Kod pocztowy: <span class="text-muted" th:text="${income.to.postalCode}"></span> </p>
+                    <p class="fw-bold text-start text-black">Miasto: <span class="text-muted" th:text="${income.to.city}"></span> </p>
+                    <p class="fw-bold text-start text-black">Numer konta odbiorcy: <span class="text-muted" th:text="${income.to.bankAccountNumber}"></span> </p>
                 </div>
             </div>
         </main>
     </div>
-</div>
 </div>
 </body>
 </html>

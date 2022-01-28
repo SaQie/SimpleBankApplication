@@ -13,7 +13,7 @@ import pl.saqie.SimpleBank.app.transaction.exception.TransactionNotFoundExceptio
 import pl.saqie.SimpleBank.app.transaction.model.dto.ExpensesDto;
 import pl.saqie.SimpleBank.app.transaction.model.dto.SingleExpenseDto;
 import pl.saqie.SimpleBank.app.transaction.service.ExpensesService;
-import pl.saqie.SimpleBank.app.transaction.service.SingleExpenseService;
+import pl.saqie.SimpleBank.app.transaction.service.SingleTransactionService;
 import pl.saqie.SimpleBank.app.user.model.User;
 
 @Controller
@@ -21,7 +21,7 @@ import pl.saqie.SimpleBank.app.user.model.User;
 public class ExpensesController {
 
     private final ExpensesService service;
-    private final SingleExpenseService singleExpenseService;
+    private final SingleTransactionService singleExpenseService;
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/expenses")
