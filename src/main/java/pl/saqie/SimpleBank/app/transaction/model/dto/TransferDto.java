@@ -19,6 +19,7 @@ public class TransferDto {
     @NotNull(message = "Kwota nie może być 0")
     @NotEmpty(message = "Pole kwota nie może pozostać puste")
     private String amount;
+    @Size(max = 15, message = "Opis może się składać z maksymalnie 15 znaków.")
     private String description;
 
 }

@@ -3,6 +3,7 @@ package pl.saqie.SimpleBank.app.transaction.service.impl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.saqie.SimpleBank.app.account.exception.AccountNotFoundException;
+import pl.saqie.SimpleBank.app.account.exception.InvalidValueException;
 import pl.saqie.SimpleBank.app.account.exception.NotEnoughMoneyException;
 import pl.saqie.SimpleBank.app.account.exception.SameAccountException;
 import pl.saqie.SimpleBank.app.account.model.BankAccount;
@@ -11,7 +12,7 @@ import pl.saqie.SimpleBank.app.account.repository.BankAccountRepository;
 import pl.saqie.SimpleBank.app.transaction.service.IncomeMoneyService;
 import pl.saqie.SimpleBank.app.transaction.service.TransferService;
 import pl.saqie.SimpleBank.app.transaction.service.WithdrawalMoneyService;
-import pl.saqie.SimpleBank.app.account.service.validator.TransferMoneyValidatorChain;
+import pl.saqie.SimpleBank.app.transaction.service.validator.TransferMoneyValidatorChain;
 import pl.saqie.SimpleBank.app.transaction.service.TransactionService;
 import pl.saqie.SimpleBank.app.user.model.User;
 import pl.saqie.SimpleBank.app.transaction.service.PriceParser;
@@ -34,7 +35,7 @@ public class TranasferServiceImpl implements TransferService {
 
 
     @Override
-    public void transfer(User user, TransferDto dto) throws AccountNotFoundException, ParseException, NotEnoughMoneyException, SameAccountException {
+    public void transfer(User user, TransferDto dto) throws AccountNotFoundException, ParseException, NotEnoughMoneyException, SameAccountException, InvalidValueException {
         BankAccount toBankAccount = findAccount(dto.getAccountNumber());
         BankAccount fromBankAccount = user.getBankAccount();
         BigDecimal value = priceParser.parserPrice(dto.getAmount());
@@ -44,7 +45,7 @@ public class TranasferServiceImpl implements TransferService {
         transactionService.saveTransaction(fromBankAccount,toBankAccount, dto.getDescription(), value);
     }
 
-    private void chain(BankAccount fromBankAccount, BigDecimal amount, BankAccount toBankAccount) throws NotEnoughMoneyException, SameAccountException {
+    private void chain(BankAccount fromBankAccount, BigDecimal amount, BankAccount toBankAccount) throws NotEnoughMoneyException, SameAccountException, InvalidValueException {
         for (TransferMoneyValidatorChain moneyValidatorChain : validatorChain) {
             moneyValidatorChain.chain(fromBankAccount, amount, toBankAccount);
         }

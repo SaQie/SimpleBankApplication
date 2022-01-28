@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.saqie.SimpleBank.app.transaction.service.IncomeService;
-import pl.saqie.SimpleBank.app.transaction.model.dto.IncomeDto;
+import pl.saqie.SimpleBank.app.transaction.model.dto.IncomesDto;
 import pl.saqie.SimpleBank.app.user.model.User;
 
 @Controller
@@ -21,7 +21,7 @@ public class IncomeController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/incomes")
     public String getIncomesPage(@RequestParam(required = false, name = "page", defaultValue = "1") int page, Model model, @AuthenticationPrincipal User user){
-        Page<IncomeDto> allIncomes = incomeService.findAllIncomes(user, page);
+        Page<IncomesDto> allIncomes = incomeService.findAllIncomes(user, page);
         model.addAttribute("incomes", allIncomes.getContent());
         model.addAttribute("totalPages", allIncomes.getTotalPages());
         model.addAttribute("currentPage", page);

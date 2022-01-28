@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class IncomeDto {
+public class IncomesDto {
 
     private Long id;
     private String description;
@@ -19,7 +19,7 @@ public class IncomeDto {
     private String date;
     private String accountNumberFrom;
 
-    public IncomeDto(Long id, String description, BigDecimal amount, LocalDateTime date, String accountNumberFrom) {
+    public IncomesDto(Long id, String description, BigDecimal amount, LocalDateTime date, String accountNumberFrom) {
         this.id = id;
         this.description = description;
         this.amount = amount;

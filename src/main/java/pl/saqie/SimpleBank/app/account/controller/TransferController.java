@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.saqie.SimpleBank.app.account.exception.AccountNotFoundException;
+import pl.saqie.SimpleBank.app.account.exception.InvalidValueException;
 import pl.saqie.SimpleBank.app.account.exception.NotEnoughMoneyException;
 import pl.saqie.SimpleBank.app.account.exception.SameAccountException;
 import pl.saqie.SimpleBank.app.transaction.model.dto.TransferDto;
@@ -25,7 +26,6 @@ import java.text.ParseException;
 public class TransferController {
 
     private final TransferService transferService;
-    private final TransactionRepository repository;
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/transfer")
@@ -41,7 +41,7 @@ public class TransferController {
             try {
                 transferService.transfer(user, transferDto);
                 model.addAttribute("transferSuccess", "Pomyślnie wykonano przelew, odbiorca otrzymał środki na konto.");
-            } catch (AccountNotFoundException | NotEnoughMoneyException | ParseException | SameAccountException e) {
+            } catch (AccountNotFoundException | NotEnoughMoneyException | ParseException | SameAccountException | InvalidValueException e) {
                 model.addAttribute("error", e.getMessage());
             }
         }
