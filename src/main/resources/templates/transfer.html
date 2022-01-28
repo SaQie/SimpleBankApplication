@@ -108,17 +108,17 @@
                     <div class="row g-3 align-self-center">
                         <div class="col-sm-12">
                             <label for="accountNumber" class="form-label">Numer rachunku odbiorcy</label>
-                            <input type="number" class="form-control" id="accountNumber" th:field="${transferDto.accountNumber}">
+                            <input type="number" class="form-control" id="accountNumber" th:field="${transferMoneyDto.accountNumber}">
                             <div class="col-12 text-muted">Wprowadz 26-cyfrowy numer konta odbiorcy</div>
                         </div>
                         <div class="col-sm-12">
                             <label for="amount" class="form-label">Kwota</label>
-                            <input type="number" step="0.01" class="form-control" id="amount" th:field="${transferDto.amount}">
+                            <input type="number" step="0.01" class="form-control" id="amount" th:field="${transferMoneyDto.amount}">
                             <div class="col-12 text-muted">Wprowadz kwotę</div>
                         </div>
                         <div class="col-sm-12">
                             <label for="title" class="form-label">Tytuł przelewu</label>
-                            <input type="text" step="0.01" class="form-control" id="title" th:field="${transferDto.description}">
+                            <input type="text" step="0.01" class="form-control" id="title" th:field="${transferMoneyDto.description}">
                             <div class="col-12 text-muted">Wprowadz krótki opis przelewu</div>
                         </div>
                     </div>
@@ -128,10 +128,10 @@
             <div class="col-8 m-auto" th:if="${transferSuccess} != null">
                 <h4 class="mt-5 mb-3 border-bottom text-success fw-bold" th:text="${transferSuccess}"></h4>
             </div>
-            <div th:if="${#fields.hasErrors('${transferDto.*}')}">
+            <div th:if="${#fields.hasErrors('${transferMoneyDto.*}')}">
                 <h4 class="mb-3 mt-4 border-bottom">Błędy</h4>
                 <ul>
-                    <li class="text-muted" th:each="err : ${#fields.errors('transferDto.*')}" th:text="${err}"></li>
+                    <li class="text-muted" th:each="err : ${#fields.errors('transferMoneyDto.*')}" th:text="${err}"></li>
                 </ul>
                 <hr>
             </div>

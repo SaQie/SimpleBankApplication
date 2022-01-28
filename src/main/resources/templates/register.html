@@ -93,7 +93,7 @@
                     <div class="col-sm-6">
                         <label for="gender" class="form-label">Płeć</label>
                         <select class="form-select" id="gender" th:field="${registerDto.gender}">
-                            <option th:each="gender : ${T(pl.saqie.SimpleBank.app.user.model.Gender).values()}"
+                            <option th:each="gender : ${T(pl.saqie.SimpleBank.app.component.user.Gender).values()}"
                                     th:value="${gender}" th:text="${gender.description}"></option>
                         </select>
                     </div>

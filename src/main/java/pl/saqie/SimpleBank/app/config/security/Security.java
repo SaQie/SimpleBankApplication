@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import pl.saqie.SimpleBank.app.user.service.impl.UserLoginService;
+import pl.saqie.SimpleBank.app.component.user.usecase.login.UserLoginUseCase;
 
 @Configuration
 @EnableWebSecurity
@@ -18,7 +18,7 @@ import pl.saqie.SimpleBank.app.user.service.impl.UserLoginService;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class Security extends WebSecurityConfigurerAdapter {
 
-    private final UserLoginService userService;
+    private final UserLoginUseCase userService;
     private final PasswordEncoder encoder;
 
 
