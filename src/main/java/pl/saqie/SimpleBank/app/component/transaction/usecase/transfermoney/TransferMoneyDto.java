@@ -21,5 +21,4 @@ public class TransferMoneyDto {
     private String amount;
     @Size(max = 15, message = "Opis może się składać z maksymalnie 15 znaków.")
     private String description;
-
 }

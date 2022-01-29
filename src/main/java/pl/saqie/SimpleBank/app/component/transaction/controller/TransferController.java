@@ -6,9 +6,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.saqie.SimpleBank.app.common.exceptions.transaction.AccountNotFoundException;
 import pl.saqie.SimpleBank.app.common.exceptions.transaction.InvalidValueException;
 import pl.saqie.SimpleBank.app.common.exceptions.transaction.NotEnoughMoneyException;
@@ -30,6 +28,13 @@ public class TransferController {
     @GetMapping("/transfer")
     public String getTransferPage(Model model){
         model.addAttribute(new TransferMoneyDto());
+        return "transfer";
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PutMapping("/transfer")
+    public String getTransferPageFromRecipient(@ModelAttribute TransferMoneyDto transferMoneyDto, Model model){
+        model.addAttribute(transferMoneyDto);
         return "transfer";
     }
 

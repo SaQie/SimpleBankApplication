@@ -137,7 +137,12 @@
                             <td th:text="${recipient.firstName}"></td>
                             <td th:text="${recipient.lastName}"></td>
                             <td th:text="${recipient.accountNumber}"></td>
-                            <td><a th:href="'/transfer/' + ${recipient.id}"><button class="btn btn-outline-dark btn-sm">Wykonaj przelew</button></a><a th:href="'/recipient/delete/' + ${recipient.id}"> <button class="btn btn-outline-dark btn-sm">Usuń</button></a></td>
+                            <td>
+                                <form th:action="@{/transfer}" th:method="PUT" th:object="${transferMoneyDto}">
+                                    <input type="hidden" style="display: none" name="accountNumber" th:value="${recipient.accountNumber}">
+                                    <button type="submit" class="btn btn-outline-dark btn-sm">Wykonaj przelew</button>
+                                <a th:href="'/recipient/delete/' + ${recipient.id}">
+                                    <button type="button" class="btn btn-outline-dark btn-sm">Usuń</button></a></form></td>
                         </tr>
                         </tbody>
                     </table>

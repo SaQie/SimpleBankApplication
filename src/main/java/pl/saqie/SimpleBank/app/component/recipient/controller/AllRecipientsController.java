@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.saqie.SimpleBank.app.component.recipient.usecase.allrecipients.AllRecipientsDto;
 import pl.saqie.SimpleBank.app.component.recipient.usecase.allrecipients.AllRecipientsUseCase;
+import pl.saqie.SimpleBank.app.component.transaction.usecase.transfermoney.TransferMoneyDto;
 import pl.saqie.SimpleBank.app.component.user.User;
 
 @Controller
@@ -26,6 +27,7 @@ public class AllRecipientsController {
         model.addAttribute("totalPages", allRecipients.getTotalPages());
         model.addAttribute("totalElements", allRecipients.getTotalElements());
         model.addAttribute("currentPage", page);
+        model.addAttribute(new TransferMoneyDto());
         return "recipients";
     }
 
