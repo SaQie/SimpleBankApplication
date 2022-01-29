@@ -45,7 +45,7 @@
                     <a href="/expenses" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
                         <div class="menu-hover"><img src="https://i.imgur.com/VHoRMmu.png" width="20" height="20"> <span
-                                class="ms-1 activated">Wydatki</span></div>
+                                class="ms-1">Wydatki</span></div>
                     </a>
                     <div class="list-group-item border-end-0 d-inline-block text-black fw-bold text-center ubuntu p-2"
                          data-bs-parent="#sidebar"><h4>Konto użytkownika</h4></div>
@@ -91,39 +91,57 @@
                     <a href="/recipients" class="list-group-item border-end-0 d-inline-block text-muted"
                        data-bs-parent="#sidebar">
                         <div class="menu-hover"><img src="https://i.imgur.com/1wtk0m1.png" width="20" height="20"> <span
-                                class="ms-1">Lista zapisanych odbiorców</span></div>
+                                class="ms-1 activated">Lista zapisanych odbiorców</span></div>
                     </a>
                 </div>
             </div>
         </div>
         <main class="col ps-md-2 pt-2">
             <div class="page-header pt-3">
-                <h2>Wydatek</h2>
+                <h2>Lista odbiorców</h2>
             </div>
-            <p class="lead">Tutaj znajdziesz informacje o konkretnym wydatku</p>
+            <p class="lead">Tutaj znajdziesz listę zapisanych odbiorców</p>
             <hr>
-            <div class="fw-bold col-12 text-danger" th:if="${error != null}" th:text="${error}"></div>
-            <div class="row ms-1 justify-content-around" th:if="${error == null}">
-                <div class="col-12 fw-bold text-center p-5" th:text="'Przelew wysłany dnia: ' + ${expense.date} + ' | Kwota przelewu: ' + ${expense.value} + ' zł | Opis: ' + ${expense.description} + ' |'"></div>
-                <div class="col-12 col-xl-5 mt-xl-0 mt-2 bg-white rounded-3 p-4 me-2 table-responsive">
-                    <h3 class="text-start text-black fw-bold ubuntu">Dane nadawcy</h3>
-                    <hr>
-                    <p class="fw-bold text-start text-black">Imię: <span class="text-muted" th:text="${expense.from.firstName}"></span> </p>
-                    <p class="fw-bold text-start text-black">Nazwisko: <span class="text-muted" th:text="${expense.from.lastName}"></span> </p>
-                    <p class="fw-bold text-start text-black">Adres: <span class="text-muted" th:text="${expense.from.adress}"></span> </p>
-                    <p class="fw-bold text-start text-black">Kod pocztowy: <span class="text-muted" th:text="${expense.from.postalCode}"></span> </p>
-                    <p class="fw-bold text-start text-black">Miasto: <span class="text-muted" th:text="${expense.from.city}"></span> </p>
-                    <p class="fw-bold text-start text-black">Numer konta nadawcy: <span class="text-muted" th:text="${expense.from.bankAccountNumber}"></span> </p>
+            <div class="col-12 text-center fw-bold text-muted" th:if="${recipients.isEmpty()}">Nie posiadasz zapisanych odbiorców.</div>
+            <div class="container mt-5 px-2" th:if="${!recipients.isEmpty()}">
+                <div class="mb-2 d-flex justify-content-between align-items-center">
+                    <div class="px-2">
+                        <ul class="pagination justify-content-end">
+                            <li class="page-item">
+                                <a class="page-link" th:if="${currentPage > 1}" th:href="@{'?page=' + ${currentPage - 1}}" tabindex="-1">Poprzednia</a>
+                            </li>
+                            <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}">
+                                <a class="page-link" th:href="@{'?page=' + ${i}}" th:text="${i}"></a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" th:if="${currentPage != totalPages}" th:href="@{'?page=' + ${currentPage + 1}}">Następna</a>
+                            </li>
+                        </ul></div>
                 </div>
-                <div class="col-12 col-xl-5 mt-xl-0 mt-2 bg-white rounded-3 p-4 me-2 table-responsive">
-                    <h3 class="text-start text-black fw-bold ubuntu">Dane odbiorcy</h3>
-                    <hr>
-                    <p class="fw-bold text-start text-black">Imię: <span class="text-muted" th:text="${expense.to.firstName}"></span> </p>
-                    <p class="fw-bold text-start text-black">Nazwisko: <span class="text-muted" th:text="${expense.to.lastName}"></span> </p>
-                    <p class="fw-bold text-start text-black">Adres: <span class="text-muted" th:text="${expense.to.adress}"></span> </p>
-                    <p class="fw-bold text-start text-black">Kod pocztowy: <span class="text-muted" th:text="${expense.to.postalCode}"></span> </p>
-                    <p class="fw-bold text-start text-black">Miasto: <span class="text-muted" th:text="${expense.to.city}"></span> </p>
-                    <p class="fw-bold text-start text-black">Numer konta odbiorcy: <span class="text-muted" th:text="${expense.to.bankAccountNumber}"></span> </p>
+                <div class="table-responsive">
+                    <table class="table table-responsive table-hover">
+                        <thead>
+                        <tr class="bg-light">
+                            <th scope="col" class="text-center" width="5%">L.P</th>
+                            <th scope="col" class="text-center" width="20%">Data</th>
+                            <th scope="col" class="text-center" width="10%">Imię</th>
+                            <th scope="col" class="text-center" width="20%">Nazwisko</th>
+                            <th scope="col" class="text-center" width="20%">Numer konta</th>
+                            <th scope="col" class="text-center" width="20%">Akcja</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="text-center" th:each="recipient, count: ${recipients}">
+                            <th th:text="${count.count}"></th>
+                            <td th:text="${recipient.dateAdded}"></td>
+                            <td th:text="${recipient.firstName}"></td>
+                            <td th:text="${recipient.lastName}"></td>
+                            <td th:text="${recipient.accountNumber}"></td>
+                            <td><a th:href="'/transfer/' + ${recipient.id}"><button class="btn btn-outline-dark btn-sm">Wykonaj przelew</button></a><a th:href="'/recipient/delete/' + ${recipient.id}"> <button class="btn btn-outline-dark btn-sm">Usuń</button></a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="col-12 fw-bold text-center text-muted" th:text="'Zapisani odbiorcy: ' + ${totalElements}"></div>
                 </div>
             </div>
         </main>

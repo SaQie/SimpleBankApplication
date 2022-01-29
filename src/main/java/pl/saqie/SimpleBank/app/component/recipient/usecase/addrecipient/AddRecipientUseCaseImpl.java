@@ -10,6 +10,7 @@ import pl.saqie.SimpleBank.app.component.bankaccount.BankAccountRepository;
 import pl.saqie.SimpleBank.app.component.recipient.Recipient;
 import pl.saqie.SimpleBank.app.component.recipient.RecipientRepository;
 import pl.saqie.SimpleBank.app.component.user.User;
+import pl.saqie.SimpleBank.app.component.user.UserRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -34,6 +35,13 @@ public class AddRecipientUseCaseImpl implements AddRecipientUseCase{
         }else {
             saveNewRecipient(recipientDto, user);
         }
+        saveBankAccountRecipientsCount(user);
+    }
+
+    private void saveBankAccountRecipientsCount(User user) {
+        BankAccount bankAccount = user.getBankAccount();
+        bankAccount.setAccountNumberOfRecipients(bankAccount.getAccountNumberOfRecipients() + 1);
+        bankAccountRepository.save(bankAccount);
     }
 
     private void checkIsThisSameAccount(RecipientDto recipientDto, User user) throws SameAccountException {

@@ -29,6 +29,7 @@ public class IncomeController {
         Page<IncomesDto> allIncomes = incomeService.findAllIncomes(user, page);
         model.addAttribute("incomes", allIncomes.getContent());
         model.addAttribute("totalPages", allIncomes.getTotalPages());
+        model.addAttribute("totalElements", allIncomes.getTotalElements());
         model.addAttribute("currentPage", page);
         return "incomes";
     }

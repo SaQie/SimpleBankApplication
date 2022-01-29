@@ -29,6 +29,7 @@ public class ExpenseController {
             Page<ExpensesDto> allExpenses = service.findAllExpenses(user, page);
             model.addAttribute("expenses", allExpenses.getContent());
             model.addAttribute("totalPages", allExpenses.getTotalPages());
+            model.addAttribute("totalElements", allExpenses.getTotalElements());
             model.addAttribute("currentPage", page);
         return "expenses";
     }
