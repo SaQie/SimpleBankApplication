@@ -16,4 +16,6 @@ public interface BankAccountRepository extends JpaRepository<BankAccount, Long> 
     @Query("select new pl.saqie.SimpleBank.app.component.bankaccount.usecase.activebanks.ActiveBanksDto(b.accountNumber, b.accountBalance, b.accountCreatedDate) from BankAccount b where b.user.id = :id")
     ActiveBanksDto customFindActiveBanksDtoByUserId(Long id);
 
+    BankAccount findByUserId(Long id);
+
 }
