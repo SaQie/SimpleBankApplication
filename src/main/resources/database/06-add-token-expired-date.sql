@@ -1,0 +1,1 @@
+ALTER TABLE users ADD email_activation_token_expired_date TIMESTAMP

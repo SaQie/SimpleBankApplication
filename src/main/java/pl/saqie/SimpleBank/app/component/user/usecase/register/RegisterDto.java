@@ -28,6 +28,7 @@ public class RegisterDto{
     private String postalCode;
     @NotEmpty(message = "Wporwadz swój adres zamieszkania")
     private String city;
+    @NotEmpty(message = "Adres email nie może być pusty.")
     @Email(message = "Adres E-mail nie jest poprawny")
     private String email;
     @Size(min = 4, max = 30, message = "Hasło powinno zawierać co najmniej 4 znaki")

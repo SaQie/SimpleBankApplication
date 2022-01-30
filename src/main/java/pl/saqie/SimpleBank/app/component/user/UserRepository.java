@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import pl.saqie.SimpleBank.app.component.user.User;
 import pl.saqie.SimpleBank.app.component.user.usecase.accountdata.AccountDataDto;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -21,4 +23,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     AccountDataDto customFindAccountDataDtoByUserId(Long id);
 
     Optional<User> findByEmailActivationToken(String token);
+
+    @Query("select u.id from User u where u.emailActivationTokenExpiredDate <= :time")
+    List<Long> customFindAllUsersWithExpiredActivationToken(LocalDateTime time);
 }

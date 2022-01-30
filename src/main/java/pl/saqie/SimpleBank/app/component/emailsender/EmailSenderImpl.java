@@ -28,10 +28,4 @@ public class EmailSenderImpl implements EmailSender{
         messageHelper.setText(RegisterEmailTextMessage.getRegisterEmailText(config.getApplicationAdress() + "confirm_email?token=" + token),true);
         mailSender.send(mimeMessage);
     }
-
-    @Override
-    @Async
-    public void sendForgotPasswordEmail(String to, String token) {
-
-    }
 }

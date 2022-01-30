@@ -6,6 +6,4 @@ public interface EmailSender {
 
     void sendRegisterEmail(String to, String token) throws MessagingException;
 
-    void sendForgotPasswordEmail(String to, String token);
-
 }

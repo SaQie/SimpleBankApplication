@@ -8,6 +8,7 @@ import pl.saqie.SimpleBank.app.component.user.usecase.register.RegisterDto;
 import pl.saqie.SimpleBank.app.component.userinformation.mapper.UserInformationMapperToEntity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
@@ -24,6 +25,7 @@ public class RegisterDtoMapper implements UserMapperToEntity {
                 .password(passwordEncoder.getPasswordEncoder().encode(registerDto.getPassword()))
                 .email(registerDto.getEmail())
                 .userInformation(mapperToEntity.mapDtoToEntity(registerDto))
+                .emailActivationTokenExpiredDate(LocalDateTime.now().plusMinutes(15))
                 .build();
     }
 }

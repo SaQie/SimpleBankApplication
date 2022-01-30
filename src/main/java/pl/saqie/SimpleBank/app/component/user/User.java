@@ -8,6 +8,7 @@ import pl.saqie.SimpleBank.app.component.userinformation.UserInformation;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Entity
@@ -30,12 +31,13 @@ public class User implements UserDetails{
     private LocalDate updatedDate;
     private boolean enabled;
     private String emailActivationToken;
+    private LocalDateTime emailActivationTokenExpiredDate;
 
 
-    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH, CascadeType.REMOVE})
     private BankAccount bankAccount;
 
-    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH})
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH, CascadeType.REMOVE})
     private UserInformation userInformation;
 
     @Override
