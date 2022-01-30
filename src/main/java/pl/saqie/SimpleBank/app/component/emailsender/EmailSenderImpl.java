@@ -10,6 +10,7 @@ import pl.saqie.SimpleBank.app.config.application.ApplicationAdressConfig;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
 
 @Service
 @AllArgsConstructor
@@ -20,9 +21,10 @@ public class EmailSenderImpl implements EmailSender{
 
     @Override
     @Async
-    public void sendRegisterEmail(String to, String token) throws MessagingException {
+    public void sendRegisterEmail(String to, String token) throws MessagingException, UnsupportedEncodingException {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+        messageHelper.setFrom("admin@simplebank.com", "Rejestracja");
         messageHelper.setTo(to);
         messageHelper.setSubject("Rejestracja nowego użytkownika");
         messageHelper.setText(RegisterEmailTextMessage.getRegisterEmailText(config.getApplicationAdress() + "confirm_email?token=" + token),true);
