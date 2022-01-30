@@ -14,6 +14,7 @@ import pl.saqie.SimpleBank.app.component.user.UserRepository;
 import pl.saqie.SimpleBank.app.component.user.usecase.register.validator.RegisterValidator;
 
 import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,7 +30,7 @@ public class UserRegisterUseCaseImpl implements UserRegisterUseCase {
 
 
     @Override
-    public void registerUser(RegisterDto registerDto) throws UserAlreadyExistsException, UserIncompatibilePasswordsException, UserFieldValidationFailedException, MessagingException {
+    public void registerUser(RegisterDto registerDto) throws UserAlreadyExistsException, UserIncompatibilePasswordsException, UserFieldValidationFailedException, MessagingException, UnsupportedEncodingException {
         validateRegisterDto(registerDto);
         User user = mapperToEntity.mapDtoToEntity(registerDto);
         assignBankAccountToUser(user);

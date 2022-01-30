@@ -17,6 +17,7 @@ import pl.saqie.SimpleBank.app.component.user.usecase.register.UserRegisterUseCa
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 
 @Controller
 @AllArgsConstructor
@@ -40,7 +41,7 @@ public class RegisterController {
             try {
                 registerService.registerUser(registerDto);
                 model.addAttribute("registerSuccessfull", "Zostałeś pomyślnie zarejestrowany");
-            } catch (UserAlreadyExistsException | UserFieldValidationFailedException | UserIncompatibilePasswordsException | MessagingException e) {
+            } catch (UserAlreadyExistsException | UserFieldValidationFailedException | UserIncompatibilePasswordsException | MessagingException | UnsupportedEncodingException e) {
                 model.addAttribute("error", e.getMessage());
             }
         }
