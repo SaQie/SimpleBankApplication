@@ -30,6 +30,7 @@
                 <li class="text-muted" th:text="'Płeć: ' + ${registerDto.gender.description}"></li>
                 <li class="text-muted" th:text="'E-mail: ' + ${registerDto.email}"></li>
             </ul>
+            <p class="text-muted mt-4 mb-4 fw-bold">Pamiętaj o potwierdzeniu Twojego adresu E-mail !</p>
             <a href="/login" class="text-muted mt-4 mb-4" style="text-decoration: none">Kliknij aby przejść do logowania</a>
         </div>
         <div class="col-9 m-auto" th:if="${registerSuccessfull == null}">

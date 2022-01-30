@@ -28,6 +28,8 @@ public class User implements UserDetails{
     private String email;
     private LocalDate createdDate;
     private LocalDate updatedDate;
+    private boolean enabled;
+    private String emailActivationToken;
 
 
     @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
@@ -68,6 +70,6 @@ public class User implements UserDetails{
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 }

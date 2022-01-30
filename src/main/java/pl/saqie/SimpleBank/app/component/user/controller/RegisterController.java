@@ -15,6 +15,7 @@ import pl.saqie.SimpleBank.app.component.user.User;
 import pl.saqie.SimpleBank.app.component.user.usecase.register.RegisterDto;
 import pl.saqie.SimpleBank.app.component.user.usecase.register.UserRegisterUseCase;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 @Controller
@@ -39,7 +40,7 @@ public class RegisterController {
             try {
                 registerService.registerUser(registerDto);
                 model.addAttribute("registerSuccessfull", "Zostałeś pomyślnie zarejestrowany");
-            } catch (UserAlreadyExistsException | UserFieldValidationFailedException | UserIncompatibilePasswordsException e) {
+            } catch (UserAlreadyExistsException | UserFieldValidationFailedException | UserIncompatibilePasswordsException | MessagingException e) {
                 model.addAttribute("error", e.getMessage());
             }
         }

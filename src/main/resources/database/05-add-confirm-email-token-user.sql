@@ -1,0 +1,1 @@
+ALTER TABLE users add email_activation_token VARCHAR(255) UNIQUE;

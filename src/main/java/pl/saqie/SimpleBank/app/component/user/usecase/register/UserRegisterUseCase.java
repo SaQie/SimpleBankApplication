@@ -4,8 +4,10 @@ import pl.saqie.SimpleBank.app.common.exceptions.user.UserAlreadyExistsException
 import pl.saqie.SimpleBank.app.common.exceptions.user.UserFieldValidationFailedException;
 import pl.saqie.SimpleBank.app.common.exceptions.user.UserIncompatibilePasswordsException;
 
+import javax.mail.MessagingException;
+
 public interface UserRegisterUseCase {
 
-    void registerUser(RegisterDto registerDto) throws UserAlreadyExistsException, UserIncompatibilePasswordsException, UserFieldValidationFailedException;
+    void registerUser(RegisterDto registerDto) throws UserAlreadyExistsException, UserIncompatibilePasswordsException, UserFieldValidationFailedException, MessagingException;
 
 }
