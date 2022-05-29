@@ -65,5 +65,5 @@ Live available on : <a href="https://simplebanksaqie.herokuapp.com"/>Heroku</a>
 Test accounts: 
 
 
-<b> Pesel: </b> 56111625584 / 90101612543
-<b> Password: </b> 123321 / 123321
+<b> Pesel: </b> 42071788373 / 64042124162
+<b> Password: </b> 123123 / 123123
